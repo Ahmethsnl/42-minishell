@@ -83,7 +83,7 @@ static void	shell_routine(t_state *state)
 			free(state->prompt);
 			continue ;
 		}
-		run_executor(state);
+		//run_executor(state);
 	}
 }
 

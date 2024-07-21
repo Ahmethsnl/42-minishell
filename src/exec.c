@@ -1,34 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dollar_util.c                                      :+:      :+:    :+:   */
+/*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/21 21:10:23 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/07/21 21:10:23 by ahmsanli         ###   ########.fr       */
+/*   Created: 2024/07/21 21:09:52 by ahmsanli          #+#    #+#             */
+/*   Updated: 2024/07/21 21:12:36 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	is_valid_dollar(char *data, int i)
+void run_executor(t_state *state)
 {
-	return (data[i] == '$' && (is_alpha(data[i + 1]) || data[i + 1] == '_'
-			|| is_digit(data[i + 1]) || data[i + 1] == '?'));
-}
-
-bool	is_digit(char c)
-{
-	return (c >= '0' && c <= '9');
-}
-
-bool	is_alpha(char c)
-{
-	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
-}
-
-bool	is_alnum_underscore(char c)
-{
-	return (is_digit(c) || is_alpha(c) || c == '_');
+	(void)state;
+	//code here
 }

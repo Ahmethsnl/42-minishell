@@ -63,6 +63,8 @@ clean:
 fclean: clean
 	$(RM) $(NAME) & wait
 
+r : ./bin/minishell
+
 re: fclean
 	$(MAKE) all
 

@@ -1,3 +1,1 @@
-# kayisi minishell
-KAAN KARAKUŞ
-AHMET ŞANLI
+# kayısı minishell

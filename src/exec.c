@@ -20,7 +20,7 @@ void run_executor(t_state *state)
 		//exec_exit(state); exec_exit is not implemented yet
 	}
 }
-/* which_command_built_in is not implemented yet
+/* which_command_built_in is not implemented yet */
 
 void which_command_built_in(t_state *state)
 {
@@ -29,21 +29,20 @@ void which_command_built_in(t_state *state)
 	i = 0;
 	while (state->token_arr[i])
 	{
-		if (ft_strcmp(state->token_arr[i], "echo") == 0)
+		if ((ft_strcmp(state->token_arr[i], "echo") == 0) && state->token_arr[i]->type == CMD)
 			run_echo(state);
-		else if (ft_strcmp(state->token_arr[i], "cd") == 0)
+		else if (ft_strcmp(state->token_arr[i], "cd") == 0 && state->token_arr[i]->type == CMD)
 			run_cd(state);
-		else if (ft_strcmp(state->token_arr[i], "pwd") == 0)
+		else if (ft_strcmp(state->token_arr[i], "pwd") == 0 && state->token_arr[i]->type == CMD)
 			run_pwd(state);
-		else if (ft_strcmp(state->token_arr[i], "export") == 0)
+		else if (ft_strcmp(state->token_arr[i], "export") == 0 && state->token_arr[i]->type == CMD)
 			run_export(state);
-		else if (ft_strcmp(state->token_arr[i], "unset") == 0)
+		else if (ft_strcmp(state->token_arr[i], "unset") == 0 && state->token_arr[i]->type == CMD)
 			run_unset(state);
-		else if (ft_strcmp(state->token_arr[i], "env") == 0)
+		else if (ft_strcmp(state->token_arr[i], "env") == 0 && state->token_arr[i]->type == CMD)
 			run_env(state);
-		else if (ft_strcmp(state->token_arr[i], "exit") == 0)
+		else if (ft_strcmp(state->token_arr[i], "exit") == 0 && state->token_arr[i]->type == CMD)
 			run_exit(state);
 		i++;
 	}
 }
-*/

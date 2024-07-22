@@ -68,4 +68,7 @@ fclean: clean
 re: fclean
 	$(MAKE) all
 
+r : all clean
+	./$(NAME)
+
 .PHONY: all clean fclean re

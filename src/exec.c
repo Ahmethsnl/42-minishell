@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-void run_executor(t_state *state)
+void	run_executor(t_state *state)
 {
 	if (!state)
 	{
@@ -20,11 +20,11 @@ void run_executor(t_state *state)
 		//exec_exit(state); exec_exit is not implemented yet
 	}
 }
-/* which_command_built_in is not implemented yet */
+/* which_command_built_in is not implemented yet (It will be written into built_in.c) (There is no need to check if it is a command) */
 
-void which_command_built_in(t_state *state)
+void	which_command_built_in(t_state *state)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (state->token_arr[i])

@@ -13,7 +13,7 @@ SRCS				= src/meta.c src/quote.c src/separator.c src/token.c \
 	src/assign_token_types.c src/lexer.c \
 	src/ft_split.c \
 	src/syntax_check_util.c src/syntax_check.c \
-	src/signal.c src/dispose.c src/print_util.c src/token_util2.c  \
+	src/signal.c src/smash.c src/print_util.c src/token_util2.c  \
 	src/util2.c src/util3.c src/quote_util.c
 
 OBJS					= $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

@@ -58,10 +58,10 @@ int	token_count_args(t_token *token)
 // 	if (exec_built_in(state, token, cmd, pipe_fds) != SUCCESS)
 // 	{
 // 		token->data = NULL;
-// 		return (cmd_dispose(cmd), FAILURE);
+// 		return (cmd_smash(cmd), FAILURE);
 // 	}
 // 	token->data = NULL;
-// 	return (cmd_dispose(cmd), SUCCESS);
+// 	return (cmd_smash(cmd), SUCCESS);
 // }
 
 // int	set_cmd_arg_and_path(t_token *token, t_state *state, t_cmd *cmd,

@@ -1,16 +1,16 @@
 #include "minishell.h"
 #include <stdlib.h>
 
-void	state_dispose(t_state **state)
+void	state_smash(t_state **state)
 {
 	if (!state || !*state)
 		return ;
 	free((*state)->prompt);
 	(*state)->prompt = NULL;
-	token_arr_dispose(&(*state)->token_arr);
+	token_arr_smash(&(*state)->token_arr);
 }
 
-void	dispose_prompt(t_state *state)
+void	smash_prompt(t_state *state)
 {
 	if (state)
 	{
@@ -18,10 +18,10 @@ void	dispose_prompt(t_state *state)
 		state->prompt = NULL;
 	}
 	if (state->token_arr)
-		token_arr_dispose(&state->token_arr);
+		token_arr_smash(&state->token_arr);
 }
 
-void	state_dispose_single(t_state **state)
+void	state_smash_single(t_state **state)
 {
 	int	i;
 
@@ -36,7 +36,7 @@ void	state_dispose_single(t_state **state)
 	(*state)->prompt = NULL;
 }
 
-void	dispose_paths(char **paths)
+void	smash_paths(char **paths)
 {
 	int	i;
 

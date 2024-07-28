@@ -1,7 +1,7 @@
 #include "minishell.h"
 #include <stdlib.h>
 
-void	token_dispose(t_token **token)
+void	token_smash(t_token **token)
 {
 	if (!token)
 		return ;
@@ -14,16 +14,16 @@ void	token_dispose(t_token **token)
 	*token = NULL;
 }
 
-void	token_dispose_all(t_token **token)
+void	token_smash_all(t_token **token)
 {
 	if (!token || !*token)
 		return ;
 	if ((*token)->next)
-		token_dispose_all(&(*token)->next);
-	token_dispose(token);
+		token_smash_all(&(*token)->next);
+	token_smash(token);
 }
 
-void	token_arr_dispose(t_token ***token_arr)
+void	token_arr_smash(t_token ***token_arr)
 {
 	int	i;
 
@@ -32,7 +32,7 @@ void	token_arr_dispose(t_token ***token_arr)
 	i = 0;
 	while ((*token_arr)[i])
 	{
-		token_dispose_all(&(*token_arr)[i]);
+		token_smash_all(&(*token_arr)[i]);
 		i++;
 	}
 	free(*token_arr);
@@ -67,7 +67,7 @@ t_token	**token_separate_by_pipe(t_token *token)
 			md.iter->prev->next = NULL;
 			md.iter = md.iter->next;
 			if (md.temp)
-				token_dispose(&md.temp);
+				token_smash(&md.temp);
 			if (md.temp_root && md.temp_root->type == PIPE)
 				return (NULL);
 			md.i++;

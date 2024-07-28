@@ -52,5 +52,5 @@ void	token_old_del(t_token **temp, t_token *root)
 	if ((*temp)->next)
 		(*temp)->next->prev = (*temp)->prev;
 	*temp = (*temp)->next;
-	token_dispose(&old_node);
+	token_smash(&old_node);
 }

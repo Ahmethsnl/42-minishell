@@ -20,7 +20,7 @@ static int	ft_count_words(char const *str, char c)
 	return (count);
 }
 
-static char	**ft_dispose_arr(char **arr, int i)
+static char	**ft_smash_arr(char **arr, int i)
 {
 	while (i >= 0)
 	{
@@ -50,7 +50,7 @@ static char	**ft_fill_arr(char **arr, char const *str, char c)
 		{
 			arr[arr_i] = ft_substr(str, j, i - j);
 			if (arr[arr_i] == NULL)
-				return (ft_dispose_arr(arr, arr_i));
+				return (ft_smash_arr(arr, arr_i));
 			arr_i++;
 		}
 	}

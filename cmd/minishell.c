@@ -7,7 +7,7 @@
 
 int	g_sig = 0;
 
-static void	dispose_env_idx(char **copy_env, int i) // test codespace push git
+static void	smash_env_idx(char **copy_env, int i)
 {
 	if (!copy_env)
 		return ;
@@ -35,7 +35,7 @@ char	**copy_env(char **env)
 	{
 		env_copy[i] = ft_strdup(env[i]);
 		if (!env_copy[i])
-			return (dispose_env_idx(env_copy, i), NULL);
+			return (smash_env_idx(env_copy, i), NULL);
 		i++;
 	}
 	env_copy[i] = NULL;
@@ -51,7 +51,7 @@ static t_state	*state_init(char **argv, char **env)
 		return (NULL);
 	state->env = copy_env(env);
 	if (!state->env)
-		return (state_dispose(&state), NULL);
+		return (state_smash(&state), NULL);
 	state->argv = argv;
 	state->token_arr = NULL;
 	state->prompt = NULL;
@@ -73,7 +73,7 @@ static void	shell_routine(t_state *state)
 		if (state->err)
 		{
 			print_syntax_err(state->err, state);
-			dispose_prompt(state);
+			smash_prompt(state);
 			continue ;
 		}
 		state->err = SUCCESS;
@@ -96,5 +96,5 @@ int	main(int argc, char **argv, char **env)
 	if (!state)
 		return (argc);
 	shell_routine(state);
-	return (state_dispose(&state), state->status);
+	return (state_smash(&state), state->status);
 }

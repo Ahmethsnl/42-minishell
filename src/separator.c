@@ -36,10 +36,10 @@ int	create_separated_node(t_token **root, char *prompt, int start, int i)
 
 	data = ft_substr(prompt, start, i - start);
 	if (!data)
-		return (token_dispose(root), 1);
+		return (token_smash(root), 1);
 	new = token_new(data, NONE);
 	if (!new)
-		return (free(data), token_dispose(root), 1);
+		return (free(data), token_smash(root), 1);
 	*root = token_add_last(*root, new);
 	if (!*root)
 		return (free(data), free(new), 1);
@@ -76,7 +76,7 @@ void	token_insert_dollar_nodes(t_token **token)
 		}
 		else
 			*token = temp->next;
-		token_dispose(&temp);
+		token_smash(&temp);
 		return ;
 	}
 	token_insertion(token, temp, sub_nodes);
@@ -101,5 +101,5 @@ void	token_insertion(t_token **token, t_token *temp, \
 		sub_last->next = temp->next;
 	if (temp->next)
 		temp->next->prev = sub_last;
-	token_dispose(&temp);
+	token_smash(&temp);
 }

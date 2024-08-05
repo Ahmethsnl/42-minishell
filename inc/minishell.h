@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:11:38 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/07/21 21:11:38 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/05 19:24:03 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,14 @@
 # define MINISHELL_H
 
 # include <stdbool.h>
+# include <stdbool.h>
+# include <errno.h>
+# include <string.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <dirent.h>
+# include "sys/wait.h"
+# include "sys/types.h"
 
 # define PATH_MAX 4096
 
@@ -275,7 +283,7 @@ int					fork_init(t_state *state, t_cmd *cmd, int **fd,
 int					w_exit_status(int status);
 int					exec_single_cmd(t_token *token, t_state *state, t_cmd *cmd);
 bool				token_has_cmd(t_token *token);
-void				run_executor(t_state *state);
+int					run_executor(t_state *state);
 int					cmd_init(t_cmd *cmd, int arr_len);
 void				state_dispose_single(t_state **state);
 void				cmd_dispose(t_cmd *cmd);
@@ -283,6 +291,8 @@ int					**pipe_fds_dispose_idx(int **pipe_fds, int i);
 void				built_in_handle_fds(t_cmd *cmd, int **pipe_fds);
 void				dispose_paths(char **paths);
 int					env_len(t_state *state);
-
+void				exec_start(t_state *state);
+int					which_command_built_in(t_state *state, t_token *token);
+int					run_executor(t_state *state);
 
 #endif

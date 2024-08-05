@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.c                                             :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/21 21:09:52 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/05 19:26:51 by ahmsanli         ###   ########.fr       */
+/*   Created: 2024/08/05 18:11:08 by ahmsanli          #+#    #+#             */
+/*   Updated: 2024/08/05 19:26:25 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int run_executor(t_state *state)
+void run_cd(t_state *state, t_token *token)
 {
-	which_command_built_in(state, state->token_arr[0]);
-}
+	char	*home;
 
-void exec_start(t_state *state)
-{
-	if (!(state->token_arr && run_executor(state) == SUCCESS))
-		print_unknown_err(state);
-	dispose_prompt(state);
+	home = get_env_value(state, "HOME");
+	if (!home)
+		return (exec_error(state, token, 1, ERR_HOME_NOT_SET));
+	if (chdir(home) == -1)
+		return (exec_error(state, token, 1, strerror(0)));
 }

@@ -6,12 +6,11 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:11:21 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/07/21 21:11:22 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/07 18:21:18 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include <stdlib.h>
+#include "../inc/minishell.h"
 
 void	token_dispose(t_token **token)
 {

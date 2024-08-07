@@ -6,11 +6,11 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:10:23 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/07/21 21:10:23 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/07 18:21:57 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../inc/minishell.h"
 
 bool	is_valid_dollar(char *data, int i)
 {

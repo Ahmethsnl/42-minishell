@@ -6,12 +6,11 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:11:16 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/07/21 21:11:17 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/07 18:21:42 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include <stdlib.h>
+#include "../inc/minishell.h"
 
 t_token	*token_get_root(t_token *node)
 {

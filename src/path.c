@@ -6,15 +6,11 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:10:38 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/07/21 21:10:38 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/07 18:34:32 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include <unistd.h>
-#include <stdlib.h>
-#include <sys/stat.h>
-#include <errno.h>
+#include "../inc/minishell.h"
 
 char	*get_env_path_arr_as_str(char **env)
 {
@@ -39,14 +35,14 @@ char	*get_cmd_absolute_path(t_token *token, t_state *state)
 
 	stat(token->data, &buf);
 	if (errno == EACCES)
-		return (print_exec_err(state, token, 106, EACCES), NULL);
+		return (print_execute_err(state, token, 106, EACCES), NULL);
 	if (S_ISDIR(buf.st_mode))
-		return (print_exec_err(state, token, 126, ERR_IS_DIR), NULL);
+		return (print_execute_err(state, token, 126, ERR_IS_DIR), NULL);
 	if (access(token->data, F_OK))
-		return (print_exec_err(state, token, 127, \
+		return (print_execute_err(state, token, 127, \
 			ERR_NO_SUCH_FILE_OR_DIR), NULL);
 	if (access(token->data, X_OK))
-		return (print_exec_err(state, token, 126, ERR_PERMISSION_DENIED), NULL);
+		return (print_execute_err(state, token, 126, ERR_PERMISSION_DENIED), NULL);
 	new = ft_strdup(token->data);
 	if (!new)
 		return (NULL);
@@ -64,7 +60,7 @@ static char	*get_check_cmd_path(t_token *token, t_state *state, char	*temp)
 	stat(cmd_path, &buf);
 	if (S_ISDIR(buf.st_mode))
 		return (free(cmd_path),
-			print_exec_err(state, token, 127, ERR_IS_DIR), NULL);
+			print_execute_err(state, token, 127, ERR_IS_DIR), NULL);
 	return (cmd_path);
 }
 
@@ -77,7 +73,7 @@ static char	*get_cmd_relative_path(t_token *token, t_state *state,
 
 	i = 0;
 	if (*token->data == '\0')
-		return (print_exec_err(state, token, 127, ERR_CMD_NOT_FOUND), NULL);
+		return (print_execute_err(state, token, 127, ERR_CMD_NOT_FOUND), NULL);
 	while (path_arr[i])
 	{
 		temp = ft_strjoin(path_arr[i++], "/", false);
@@ -92,7 +88,7 @@ static char	*get_cmd_relative_path(t_token *token, t_state *state,
 	}
 	if (token_is_built_in(token))
 		return (token->data);
-	return (print_exec_err(state, token, 127, ERR_CMD_NOT_FOUND), NULL);
+	return (print_execute_err(state, token, 127, ERR_CMD_NOT_FOUND), NULL);
 }
 
 char	*get_cmd_path(t_token *token, t_state *state)
@@ -104,7 +100,7 @@ char	*get_cmd_path(t_token *token, t_state *state)
 	if (ft_strchr(token->data, '/'))
 		return (get_cmd_absolute_path(token, state));
 	if (!state->env)
-		return (print_exec_err(state, token, 127, ERR_CMD_NOT_FOUND), NULL);
+		return (print_execute_err(state, token, 127, ERR_CMD_NOT_FOUND), NULL);
 	path_arr_str = get_env_path_arr_as_str(state->env);
 	if (!path_arr_str)
 		return (NULL);

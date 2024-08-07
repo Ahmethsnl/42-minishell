@@ -6,12 +6,11 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:10:35 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/07/21 21:10:36 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/07 18:57:39 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include <stdlib.h>
+#include "../inc/minishell.h"
 
 t_token	*extract_meta_chars(t_token **root)
 {

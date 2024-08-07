@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:11:38 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/05 19:24:03 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/07 19:07:52 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@
 # include <dirent.h>
 # include "sys/wait.h"
 # include "sys/types.h"
+#include <sys/stat.h>
+#include <errno.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <sys/ioctl.h>
+#include <termios.h>
+#include "signal.h"
 
 # define PATH_MAX 4096
 
@@ -153,7 +160,7 @@ typedef struct s_cmd
 }					t_cmd;
 
 void				print_unknown_err(t_state *state);
-int					print_exec_err(t_state *state, const t_token *token,
+int					print_execute_err(t_state *state, const t_token *token,
 						int status, int err);
 void				print_fatal_err(const char *msg, const int err);
 char				*ft_strchr(const char *s, int c);
@@ -292,7 +299,15 @@ void				built_in_handle_fds(t_cmd *cmd, int **pipe_fds);
 void				dispose_paths(char **paths);
 int					env_len(t_state *state);
 void				exec_start(t_state *state);
-int					which_command_built_in(t_state *state, t_token *token);
+int which_command_built_in(t_state *state, t_token *token, t_cmd *cmd, int **pipe_fds);
 int					run_executor(t_state *state);
+int					exec_single_command(t_token *token, t_state *state, t_cmd *command);
+int					exec_single_command_prepare(t_token *token, t_state *state, t_cmd *cmd);
+void				cmd_dispose(t_cmd *cmd);
+int 				run_cd(t_state *state, t_token *token);
+char				*get_env_value(t_state *state, const char *key);
+int					print_execute_err(t_state *state, const t_token *token, int status, int err);
+
+
 
 #endif

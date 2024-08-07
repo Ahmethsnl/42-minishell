@@ -6,12 +6,11 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:11:19 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/07/21 21:11:19 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/07 19:09:00 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include <stdlib.h>
+#include "../inc/minishell.h"
 
 int	token_count_pipe(t_token *token)
 {
@@ -67,7 +66,7 @@ int	token_count_args(t_token *token)
 static int	set_when_built_in(t_token *token, t_state *state, t_cmd *cmd,
 int **pipe_fds)
 {
-	if (exec_built_in(state, token, cmd, pipe_fds) != SUCCESS)
+	if (which_command_built_in(state, token, cmd, pipe_fds) != SUCCESS)
 	{
 		token->data = NULL;
 		return (cmd_dispose(cmd), FAILURE);
@@ -90,7 +89,7 @@ int **pipe_fds)
 	if (!cmd_path)
 	{
 		if (state->err != HANDLED)
-			return (print_exec_err(state, token, 127, ERR_CMD_NOT_FOUND),
+			return (print_execute_err(state, token, 127, ERR_CMD_NOT_FOUND),
 				FAILURE);
 		return (FAILURE);
 	}

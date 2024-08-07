@@ -6,13 +6,11 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:11:24 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/07/21 21:11:24 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/07 18:21:46 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include <stdlib.h>
-#include <unistd.h>
+#include "../inc/minishell.h"
 
 int	ft_strlen(const char *s)
 {

@@ -6,12 +6,11 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:10:26 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/07/21 21:10:26 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/07 18:21:51 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include <stdlib.h>
+#include "../inc/minishell.h"
 
 char	*get_dollar_value(char *key, t_state *state)
 {

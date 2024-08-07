@@ -6,11 +6,11 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:11:01 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/07/21 21:11:01 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/07 18:39:46 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../inc/minishell.h"
 
 void	syntax_squote(t_syntax *syntax)
 {

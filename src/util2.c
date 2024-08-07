@@ -6,12 +6,11 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:11:26 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/07/21 21:11:27 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/07 18:41:28 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include <stdlib.h>
+#include "../inc/minishell.h"
 
 static int	ft_count_digit(int n)
 {

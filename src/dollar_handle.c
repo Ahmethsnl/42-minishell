@@ -6,12 +6,11 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:10:19 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/07/21 21:10:20 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/07 18:33:44 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include <stdlib.h>
+#include "../inc/minishell.h"
 
 void	handle_dollar(t_token **root, t_state *state)
 {

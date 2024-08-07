@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/21 21:09:52 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/07 15:54:49 by ahmsanli         ###   ########.fr       */
+/*   Created: 2024/08/07 18:25:24 by ahmsanli          #+#    #+#             */
+/*   Updated: 2024/08/07 18:26:15 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../inc/minishell.h"
 
 void execute_start(t_state *state)
 {
@@ -33,6 +33,5 @@ int run_executor(t_state *state)
 		return (FAILURE);
 	if (arr_len == 1)
 		return (exec_single_command(state->token_arr[0], state, &command));
-	if (arr_len > 1)
-		return (exec_multiple_command(state->token_arr[0], state, &command));
+	return (FAILURE);
 }

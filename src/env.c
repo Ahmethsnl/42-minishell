@@ -1,0 +1,74 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   env.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/07 18:04:57 by ahmsanli          #+#    #+#             */
+/*   Updated: 2024/08/07 18:47:56 by ahmsanli         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../inc/minishell.h"
+
+static int	env_set_value_new(t_state *state, char *key_value)
+{
+	char	*data;
+
+	if (!state || !state->env || !key_value)
+		return (FAILURE);
+	data = ft_strdup(key_value);
+	if (!data)
+		return (FAILURE);
+	state->env = str_arr_append(state->env, data);
+	if (!state->env)
+		return (free(data), FAILURE);
+	return (SUCCESS);
+}
+
+int	env_set_value(t_state *state, char *key_value)
+{
+	int		i;
+	int		len;
+	bool	new;
+
+	if (!state || !state->env || !key_value)
+		return (FAILURE);
+	new = true;
+	i = 0;
+	while (state->env[i])
+	{
+		len = ft_strlen(key_value) - ft_strlen(ft_strchr(key_value, '='));
+		if (ft_strncmp(state->env[i], key_value, len) == 0
+			&& state->env[i][len] == '=')
+		{
+			free(state->env[i]);
+			state->env[i] = ft_strdup(key_value);
+			new = false;
+		}
+		i++;
+	}
+	if (new)
+		return (env_set_value_new(state, key_value));
+	return (SUCCESS);
+}
+
+char	*get_env_value(t_state *state, const char *key)
+{
+	int			i;
+	size_t		len;
+
+	if (!state || !state->env || !key)
+		return (NULL);
+	i = 0;
+	while (state->env[i])
+	{
+		len = ft_strlen(key);
+		if (ft_strncmp(state->env[i], key, len) == 0
+			&& state->env[i][len] == '=')
+			return (state->env[i] + 5);
+		i++;
+	}
+	return (NULL);
+}

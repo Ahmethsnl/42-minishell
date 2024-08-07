@@ -6,11 +6,11 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:10:09 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/07/21 21:10:11 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/07 18:20:58 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../inc/minishell.h"
 
 void	assign_token_arr_types(t_token **token_arr)
 {

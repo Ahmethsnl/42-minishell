@@ -6,13 +6,11 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:10:55 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/07/21 21:10:56 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/07 18:20:55 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-#include <stdlib.h>
-#include <string.h>
+#include "../inc/minishell.h"
 
 t_token	*separate_prompt_by_space(char *prompt)
 {

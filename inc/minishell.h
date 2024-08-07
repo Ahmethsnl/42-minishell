@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:11:38 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/07 20:17:55 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/07 20:21:43 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@
 # define COLOR_GREEN "\e[0;32m"
 # define COLOR_RESET "\e[0m"
 
-# define PROMPT "minishell: "
+# define PROMPT "minishell$ "
 
 extern int			g_sig;
 

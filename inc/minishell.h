@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:11:38 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/07 19:07:52 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/07 19:48:24 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -300,14 +300,16 @@ void				dispose_paths(char **paths);
 int					env_len(t_state *state);
 void				exec_start(t_state *state);
 int which_command_built_in(t_state *state, t_token *token, t_cmd *cmd, int **pipe_fds);
-int					run_executor(t_state *state);
 int					exec_single_command(t_token *token, t_state *state, t_cmd *command);
 int					exec_single_command_prepare(t_token *token, t_state *state, t_cmd *cmd);
 void				cmd_dispose(t_cmd *cmd);
 int 				run_cd(t_state *state, t_token *token);
 char				*get_env_value(t_state *state, const char *key);
-int					print_execute_err(t_state *state, const t_token *token, int status, int err);
-
-
+void				tcseta(void);
+void				handle_signals(void);
+void				ctrl_d(int sig);
+char				*get_cmd_absolute_path(t_token *token, t_state *state);
+char				*get_env_path_arr_as_str(char **env);
+bool				token_is_built_in(t_token *token);
 
 #endif

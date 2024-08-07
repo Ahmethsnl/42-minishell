@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:04:57 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/07 18:47:56 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/07 19:36:25 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,24 @@ int	env_set_value(t_state *state, char *key_value)
 	}
 	if (new)
 		return (env_set_value_new(state, key_value));
+	return (SUCCESS);
+}
+
+int	env_set_pwd(t_state *state)
+{
+	char	buffer[4096];
+
+	if (!state)
+		return (FAILURE);
+	buffer[0] = 'P';
+	buffer[1] = 'W';
+	buffer[2] = 'D';
+	buffer[3] = '=';
+	getcwd(buffer + 4, 4096);
+	if (!buffer[4])
+		return (FAILURE);
+	if (env_set_value(state, buffer) != SUCCESS)
+		return (FAILURE);
 	return (SUCCESS);
 }
 

@@ -11,7 +11,7 @@ M_SRC = $(SRC_DIR)/meta.c $(SRC_DIR)/quote.c $(SRC_DIR)/separator.c $(SRC_DIR)/t
 	$(SRC_DIR)/built_in.c $(SRC_DIR)/cd.c $(SRC_DIR)/syntax_check_util.c $(SRC_DIR)/syntax_check.c \
 	$(SRC_DIR)/signal.c $(SRC_DIR)/dispose.c $(SRC_DIR)/print_util.c $(SRC_DIR)/token_util2.c\
 	$(SRC_DIR)/util2.c $(SRC_DIR)/util3.c $(SRC_DIR)/quote_util.c $(SRC_DIR)/exec_single_cmd.c $(SRC_DIR)/pwd.c \
-	$(SRC_DIR)/env.c
+	$(SRC_DIR)/env.c $(SRC_DIR)/exec_utils.c $(SRC_DIR)/built_in_utils.c $(SRC_DIR)/error.c
 
 INC_DIR = -I./inc -I./lib/readline/include
 SRC = $(M_SRC)
@@ -25,6 +25,7 @@ all: $(NAME)
 
 $(NAME): $(RL) $(OBJ)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(READLINE) $(INC_DIR)
+	@echo "Minishell compiled"
 
 $(RL):
 	@echo "Downloading readline"

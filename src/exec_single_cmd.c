@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 15:49:06 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/07 18:43:43 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/07 19:59:01 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int exec_single_command(t_token *token, t_state *state, t_cmd *command)
 		return (FAILURE);
 	if (exec_single_command_prepare(token, state, command) == FAILURE)
 		return (cmd_dispose(command), FAILURE);
-	which_command_built_in(state, token);
+	which_command_built_in(state, token, command, NULL);
 	cmd_dispose(command);
 	return (SUCCESS);
 }

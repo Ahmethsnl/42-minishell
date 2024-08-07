@@ -1,9 +1,16 @@
-#include "minishell.h"
-#include <stdio.h>
-#include "readline/history.h"
-#include "readline/readline.h"
-#include <stdlib.h>
-#include <unistd.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/07 19:55:09 by ahmsanli          #+#    #+#             */
+/*   Updated: 2024/08/07 19:55:32 by ahmsanli         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../inc/minishell.h"
 
 int	g_sig = 0;
 

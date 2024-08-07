@@ -6,13 +6,45 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:06:56 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/07 18:34:08 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/07 19:52:51 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-int	print_execute_err(t_state *state, const t_token *token, int status, int err)
+static int	print_exec_err_with_prefix(const t_token *token, int err)
+{
+	if (err != ENO_OTHER)
+	{
+		eprint(COLOR_RED PROMPT COLOR_RESET);
+		eprint(token->data);
+		eprint(": ");
+	}
+	if (err == ENO_OTHER)
+		return (FAILURE);
+	else if (err == ENOENT)
+		return (eprint(strerror(err)), FAILURE);
+	else if (err == ERR_CMD_NOT_FOUND)
+		return (eprintln(ESTR_CMD_NOT_FOUND), FAILURE);
+	else if (err == ERR_NOT_A_VALID_IDENTIFIER)
+		return (eprintln(ESTR_NOT_A_VALID_IDENTIFIER), FAILURE);
+	else if (err == ERRP_NOT_A_VALID_IDENTIFIER)
+		return (eprintln(ESTR_NOT_A_VALID_IDENTIFIER), FAILURE);
+	else if (err == ERR_NO_SUCH_FILE_OR_DIR)
+		return (eprintln(ESTR_NO_SUCH_FILE_OR_DIR), FAILURE);
+	return (SUCCESS);
+}
+
+void	print_unknown_err(t_state *state)
+{
+	if (state->err == FAILURE)
+	{
+		state->status = 1;
+		eprintln(ESTR_UNKNOWN);
+	}
+}
+
+int	print_exec_err(t_state *state, const t_token *token, int status, int err)
 {
 	state->err = HANDLED;
 	state->status = status;
@@ -33,4 +65,10 @@ int	print_execute_err(t_state *state, const t_token *token, int status, int err)
 	else
 		eprintln(ESTR_UNEXPECTED);
 	return (FAILURE);
+}
+
+void	print_fatal_err(const char *msg, const int err)
+{
+	eprintln(msg);
+	exit(err);
 }

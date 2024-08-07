@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:06:56 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/07 19:52:51 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/07 20:05:01 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	print_unknown_err(t_state *state)
 	}
 }
 
-int	print_exec_err(t_state *state, const t_token *token, int status, int err)
+int	print_execute_err(t_state *state, const t_token *token, int status, int err)
 {
 	state->err = HANDLED;
 	state->status = status;

@@ -6,13 +6,13 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:25:24 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/07 19:34:43 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/07 20:18:23 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void execute_start(t_state *state)
+void exec_start(t_state *state)
 {
 	if (!(state->token_arr && run_executor(state) == SUCCESS))
 		print_unknown_err(state);

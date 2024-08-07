@@ -6,13 +6,14 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:11:38 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/07 19:48:24 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/07 20:17:55 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+#include <stdio.h>
 # include <stdbool.h>
 # include <stdbool.h>
 # include <errno.h>

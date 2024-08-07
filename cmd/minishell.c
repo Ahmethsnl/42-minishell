@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 19:55:09 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/07 19:55:32 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/07 20:09:40 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static void	shell_routine(t_state *state)
 			free(state->prompt);
 			continue ;
 		}
-		execute_start(state);
+		exec_start(state);
 	}
 }
 

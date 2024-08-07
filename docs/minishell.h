@@ -2,7 +2,6 @@
 # define MINISHELL_H
 
 # include <stdio.h>
-# include "../lib/libft/libft.h"
 # include <stdbool.h>
 # include <errno.h>
 # include <string.h>

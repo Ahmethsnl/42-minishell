@@ -6,13 +6,13 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 19:30:47 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/05 19:47:26 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/07 14:54:09 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void which_command_built_in(t_state *state, t_token *token)
+int which_command_built_in(t_state *state, t_token *token)
 {
 	int i;
 

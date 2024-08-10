@@ -312,5 +312,7 @@ void				ctrl_d(int sig);
 char				*get_cmd_absolute_path(t_token *token, t_state *state);
 char				*get_env_path_arr_as_str(char **env);
 bool				token_is_built_in(t_token *token);
+char				*get_env_value(t_state *state, const char *key);
+int					env_set_pwd(t_state *state);
 
 #endif

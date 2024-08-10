@@ -12,7 +12,7 @@
 
 #include "../inc/minishell.h"
 
-static bool	str_is_build_in(const char *str)
+static bool	data_is_build_in(const char *str)
 {
 	if (!str)
 		return (false);
@@ -37,5 +37,5 @@ bool	token_is_built_in(t_token *token)
 {
 	if (!token || token->type != CMD)
 		return (false);
-	return (str_is_build_in(token->data));
+	return (data_is_build_in(token->data));
 }

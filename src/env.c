@@ -90,3 +90,15 @@ char	*get_env_value(t_state *state, const char *key)
 	}
 	return (NULL);
 }
+int	run_env(t_state *state, t_cmd *cmd)
+{
+	int	i;
+
+	if (!state || !state->env || !cmd)
+		return (FAILURE);
+	i = 0;
+	while (state->env[i])
+		dprintln(cmd->bout, state->env[i++]);
+	state->status = 0;
+	return (SUCCESS);
+}

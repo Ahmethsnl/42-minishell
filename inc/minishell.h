@@ -314,5 +314,8 @@ char				*get_env_path_arr_as_str(char **env);
 bool				token_is_built_in(t_token *token);
 char				*get_env_value(t_state *state, const char *key);
 int					env_set_pwd(t_state *state);
+int					run_pwd(t_cmd *cmd, t_state *state);
+int					run_export(t_state *state, t_token *token, t_cmd *cmd);
+int					run_env(t_state *state, t_cmd *cmd);
 
 #endif

@@ -12,7 +12,7 @@
 
 #include "../inc/minishell.h"
 
-int	exec_pwd(t_cmd *cmd, t_state *state)
+int	run_pwd(t_cmd *cmd, t_state *state)
 {
 	char	cwd[PATH_MAX];
 

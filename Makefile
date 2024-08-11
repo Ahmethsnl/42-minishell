@@ -21,6 +21,10 @@ DIR = $(shell echo $(PWD))
 RM = rm -rf
 RL = ./lib/readline/lib/libreadline.a
 
+#EXEC_DIR = $(SRC_DIR)/exec
+#PARSER_DIR = $(SRC_DIR)/parser
+#UTIL_DIR = $(SRC_DIR)/util
+
 all: $(NAME)
 
 $(NAME): $(RL) $(OBJ)
@@ -40,7 +44,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-r: all clean
+ready: all clean
 	@./$(NAME)
 
 RLclean:

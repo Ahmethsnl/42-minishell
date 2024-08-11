@@ -212,6 +212,8 @@ void				eprint(const char *str);
 void				eprintln(const char *str);
 void				delete_unnecessary_quotes(char **data);
 void				handle_unnecessary_quotes(t_token *root);
+bool				token_has_cmd(t_token *token);
+int					cmd_init(t_cmd *cmd, int arr_len);
 
 //	_PARSER & _LEXER	//
 
@@ -274,9 +276,14 @@ t_token				**token_separate_by_pipe(t_token *token);
 
 //	_EXECUTOR	//
 
-void				built_in_handle_fds(t_cmd *cmd, int **pipe_fds);
+void 				exec_start(t_state *state);
+int 				run_executor(t_state *state);
+int					exec_single_command(t_token *token, t_state *state, t_cmd *command);
+int					exec_single_command_prepare(t_token *token, t_state *state,
+					t_cmd *cmd);
 int					which_command_built_in(t_state *state, t_token *token,
 					t_cmd *cmd, int **pipe_fds);
+void				built_in_handle_fds(t_cmd *cmd, int **pipe_fds);
 int					run_cd(t_state *state, t_token *token);
 int					run_pwd(t_cmd *cmd, t_state *state);
 int					run_export(t_state *state, t_token *token, t_cmd *cmd);
@@ -287,11 +294,6 @@ char				*get_env_value(t_state *state, const char *key);
 int					env_set_value(t_state *state, char *key_value);
 int					env_set_pwd(t_state *state);
 void				cmd_dispose(t_cmd *cmd);
-int					exec_single_command_prepare(t_token *token, t_state *state,
-					t_cmd *cmd);
-int					exec_single_command(t_token *token, t_state *state, t_cmd *command);
-void 				exec_start(t_state *state);
-int 				run_executor(t_state *state);
 char				*get_env_path_arr_as_str(char **env);
 char				*get_cmd_absolute_path(t_token *token, t_state *state)
 char				*get_cmd_path(t_token *token, t_state *state);

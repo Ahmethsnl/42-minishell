@@ -6,14 +6,14 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:11:38 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/15 17:25:54 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/15 19:21:08 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-#include <stdio.h>
+# include <stdio.h>
 # include <stdbool.h>
 # include <stdbool.h>
 # include <errno.h>
@@ -23,13 +23,13 @@
 # include <dirent.h>
 # include "sys/wait.h"
 # include "sys/types.h"
-#include <sys/stat.h>
-#include <errno.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <sys/ioctl.h>
-#include <termios.h>
-#include "signal.h"
+# include <sys/stat.h>
+# include <errno.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <sys/ioctl.h>
+# include <termios.h>
+# include "signal.h"
 
 # define PATH_MAX 4096
 
@@ -159,9 +159,7 @@ typedef struct s_cmd
 	int				bin;
 	int				bout;
 }					t_cmd;
-
 //	_UTILS	//
-
 int					ft_strlen(const char *s);
 int					ft_strncmp(const char *s1, const char *s2, int n);
 int					ft_strcmp(char *s1, char *s2);
@@ -180,8 +178,8 @@ void				token_old_del(t_token **temp, t_token *root);
 int					token_count_pipe(t_token *token);
 int					token_arr_len(t_token **token_arr);
 int					token_count_args(t_token *token);
-int					set_cmd_arg_and_path(t_token *token, t_state *state, t_cmd *cmd,
-					int **pipe_fds);
+int					set_cmd_arg_and_path(t_token *token, t_state *state, \
+					t_cmd *cmd, int **pipe_fds);
 int					token_append_meta_pipe(t_token **token);
 int					token_append_meta_redl(t_token **token);
 int					token_append_meta_redll(t_token **token);
@@ -202,7 +200,7 @@ bool				is_digit(char c);
 bool				is_alpha(char c);
 bool				is_alnum_underscore(char c);
 void				print_unknown_err(t_state *state);
-int					print_execute_err(t_state *state, const t_token *token,
+int					print_execute_err(t_state *state, const t_token *token, \
 					int status, int err);
 void				print_fatal_err(const char *msg, const int err);
 char				**ft_split(char const *str, char c);
@@ -216,19 +214,20 @@ bool				token_has_cmd(t_token *token);
 int					cmd_init(t_cmd *cmd, int arr_len);
 bool				is_empty_arg(t_token *arg);
 int					env_len(t_state *state);
-
 //	_PARSER & _LEXER	//
-
 void				assign_token_arr_types(t_token **token_arr);
 void				assign_token_types(t_token *token);
 void				handle_dollar(t_token **root, t_state *state);
-int					handle_special_dollar(char **data, int start, int i,
+int					handle_special_dollar(char **data, int start, int i, \
 					t_state *state);
 void				handle_number_dollar(char **data, int start, int i);
-int					handle_regular_dollar(char **data, int start, int i, t_state *state);
+int					handle_regular_dollar(char **data, int start, \
+					int i, t_state *state);
 char				*get_dollar_value(char *key, t_state *state);
-char				*create_data_from_dollar(char *data, char *value, int start, int index);
-void				extract_dollar_key_values(char **data, t_state *state, bool *has_dollar);
+char				*create_data_from_dollar(char *data, char *value, \
+					int start, int index);
+void				extract_dollar_key_values(char **data, t_state *state, \
+					bool *has_dollar);
 bool				str_is_all_space(const char *str);
 bool				token_is_all_space(t_token *root);
 t_token				**run_lexer(t_state *state);
@@ -242,7 +241,8 @@ bool				is_unnecessary_quote(int *quote, char data);
 int					count_unnecessary_quotes(char *data);
 bool				has_unnecessary_quotes(char *data);
 t_token				*separate_prompt_by_space(char *prompt);
-int					create_separated_node(t_token **root, char *prompt, int start, int i);
+int					create_separated_node(t_token **root, char *prompt, \
+					int start, int i);
 int					pass_data(char *prompt, int *i);
 void				token_insert_dollar_nodes(t_token **token);
 void				token_insertion(t_token **token, t_token *temp, \
@@ -264,9 +264,9 @@ t_token				*token_new(char *data, t_token_type type);
 t_token				*token_add_last(t_token *token, t_token *new);
 void				token_add_prev(t_token **token, t_token *new);
 bool				token_append_meta(t_token **token);
-void				token_append_all(t_token **token, int start, int i,
+void				token_append_all(t_token **token, int start, int i, \
 					t_token_type type);
-void				token_append_meta_data_init(t_token_append_meta_data *md,
+void				token_append_meta_data_init(t_token_append_meta_data *md, \
 					t_token **token);
 int					token_append_str(t_token **token, int start, int i);
 char				**token_to_arg(t_token *token, char *cmd_path);
@@ -275,15 +275,14 @@ void				token_dispose_all(t_token **token);
 void				token_arr_dispose(t_token ***token_arr);
 bool				token_sep_md_init(t_token_sep_md *md, t_token *token);
 t_token				**token_separate_by_pipe(t_token *token);
-
 //	_EXECUTOR	//
-
-void 				exec_start(t_state *state);
-int 				run_executor(t_state *state);
-int					exec_single_command(t_token *token, t_state *state, t_cmd *command);
-int					exec_single_command_prepare(t_token *token, t_state *state,
+void				exec_start(t_state *state);
+int					run_executor(t_state *state);
+int					exec_single_command(t_token *token, t_state *state, \
+					t_cmd *command);
+int					exec_single_command_prepare(t_token *token, t_state *state, \
 					t_cmd *cmd);
-int					which_command_built_in(t_state *state, t_token *token,
+int					which_command_built_in(t_state *state, t_token *token, \
 					t_cmd *cmd, int **pipe_fds);
 void				built_in_handle_fds(t_cmd *cmd, int **pipe_fds);
 int					run_cd(t_state *state, t_token *token);

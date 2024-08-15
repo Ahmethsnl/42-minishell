@@ -6,13 +6,13 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 18:11:08 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/07 19:57:24 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/15 19:12:16 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-int run_cd(t_state *state, t_token *token)
+int	run_cd(t_state *state, t_token *token)
 {
 	char	*home;
 

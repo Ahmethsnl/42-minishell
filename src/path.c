@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:10:38 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/07 19:42:43 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/15 19:10:04 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ char	*get_cmd_absolute_path(t_token *token, t_state *state)
 		return (print_execute_err(state, token, 127, \
 			ERR_NO_SUCH_FILE_OR_DIR), NULL);
 	if (access(token->data, X_OK))
-		return (print_execute_err(state, token, 126, ERR_PERMISSION_DENIED), NULL);
+		return (print_execute_err(state, token, 126, \
+			ERR_PERMISSION_DENIED), NULL);
 	new = ft_strdup(token->data);
 	if (!new)
 		return (NULL);

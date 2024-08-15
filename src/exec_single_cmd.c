@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 15:49:06 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/07 19:59:01 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/15 19:10:20 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	exec_single_command_prepare(t_token *token, t_state *state, t_cmd *cmd)
 	return (SUCCESS);
 }
 
-int exec_single_command(t_token *token, t_state *state, t_cmd *command)
+int	exec_single_command(t_token *token, t_state *state, t_cmd *command)
 {
 	if (!token || !state || !command)
 		return (FAILURE);

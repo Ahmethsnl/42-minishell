@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:11:38 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/15 19:21:08 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/15 19:24:09 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,9 @@
 # include <stdbool.h>
 # include <errno.h>
 # include <string.h>
-# include <readline/readline.h>
-# include <readline/history.h>
 # include <dirent.h>
 # include "sys/wait.h"
+# include "signal.h"
 # include "sys/types.h"
 # include <sys/stat.h>
 # include <errno.h>
@@ -29,7 +28,8 @@
 # include <stdlib.h>
 # include <sys/ioctl.h>
 # include <termios.h>
-# include "signal.h"
+# include <readline/readline.h>
+# include <readline/history.h>
 
 # define PATH_MAX 4096
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmsanli <ahmsanli@student.42istanbul.com. +#+  +:+       +#+        */
+/*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 15:30:12 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/10 15:30:12 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/15 15:54:53 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static bool	validate_export_value(t_state *state, t_token *arg)
 	while (arg)
 	{
 		if (arg->type == ARG && !is_al_underscore(arg->data[0]))
-			return (print_exec_err(state, arg, 1, \
+			return (print_execute_err(state, arg, 1, \
 				ERRP_NOT_A_VALID_IDENTIFIER), false);
 		i = 0;
 		while (arg->data[i])
@@ -73,7 +73,7 @@ static bool	validate_export_value(t_state *state, t_token *arg)
 			if (arg->data[i] == '=')
 				break ;
 			if (arg->type == ARG && !is_alnum_underscore(arg->data[i]))
-				return (print_exec_err(state, arg, 1, \
+				return (print_execute_err(state, arg, 1, \
 					ERRP_NOT_A_VALID_IDENTIFIER), false);
 			i++;
 		}

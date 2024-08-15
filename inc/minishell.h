@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:11:38 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/07 20:21:43 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/15 17:25:54 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,6 +214,8 @@ void				delete_unnecessary_quotes(char **data);
 void				handle_unnecessary_quotes(t_token *root);
 bool				token_has_cmd(t_token *token);
 int					cmd_init(t_cmd *cmd, int arr_len);
+bool				is_empty_arg(t_token *arg);
+int					env_len(t_state *state);
 
 //	_PARSER & _LEXER	//
 
@@ -295,7 +297,7 @@ int					env_set_value(t_state *state, char *key_value);
 int					env_set_pwd(t_state *state);
 void				cmd_dispose(t_cmd *cmd);
 char				*get_env_path_arr_as_str(char **env);
-char				*get_cmd_absolute_path(t_token *token, t_state *state)
+char				*get_cmd_absolute_path(t_token *token, t_state *state);
 char				*get_cmd_path(t_token *token, t_state *state);
 
 #endif

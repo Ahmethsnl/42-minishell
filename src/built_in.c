@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:34:58 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/07 19:48:09 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/15 17:48:03 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	built_in_handle_fds(t_cmd *cmd, int **pipe_fds)
 {
+	(void)pipe_fds;
 	if (cmd->in == NAFD)
 		if (cmd->heredoc)
 			cmd->in = cmd->heredoc[cmd->idx];
@@ -27,11 +28,11 @@ void	built_in_handle_fds(t_cmd *cmd, int **pipe_fds)
 
 int which_command_built_in(t_state *state, t_token *token, t_cmd *cmd, int **pipe_fds)
 {
-	built_in_handle_fds(cmd, fds);
+	built_in_handle_fds(cmd, pipe_fds);
 	// if (set_built_in_path_and_arg(state, token, cmd) != SUCCESS)
 	// 	return (FAILURE);
-	// if (ft_strncmp(token->data, "echo", 5) == 0)
-	// 	return (run_echo(state, token, cmd));
+	if (ft_strncmp(token->data, "echo", 5) == 0)
+		return (run_echo(state, token, cmd));
 	if (ft_strncmp(token->data, "cd", 3) == 0)
 		return (run_cd(state, token));
 	if (ft_strncmp(token->data, "pwd", 4) == 0)

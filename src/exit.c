@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:44:00 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/16 18:57:37 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/16 19:06:12 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static int	exit_single_argument(t_state *state, t_token *token, int *exit_code)
 		*exit_code = *exit_code + 256;
 	return (exit(*exit_code), SUCCESS);
 }
-
 
 int	run_exit(t_state *state, t_token *token)
 {

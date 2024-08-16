@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:11:38 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/15 19:24:09 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/16 18:50:02 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@
 # define ERR_CANT_CHANGE_DIR 10003
 # define ERRP_NOT_A_VALID_IDENTIFIER 10004
 # define ERR_NOT_VALID_IN_THIS_CTX 10005
+# define ERR_OLDPWD_NOT_SET 10006
 
 # define ENDL "\n"
 # define ESTR_UNKNOWN "unknown error"

@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:10:38 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/15 19:10:04 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/16 18:31:42 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*get_cmd_absolute_path(t_token *token, t_state *state)
 {
 	struct stat	buf;
 	char		*new;
-
+	
 	stat(token->data, &buf);
 	if (errno == EACCES)
 		return (print_execute_err(state, token, 106, EACCES), NULL);

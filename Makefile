@@ -2,12 +2,12 @@ NAME = minishell
 OBJ_DIR = build
 SRC_DIR = src
 CC = gcc
-CFLAGS = -g -Wall -Wextra -Werror #-fsanitize=address
+CFLAGS = -g -Wall -Wextra -Werror -fsanitize=address
 M_SRC = $(SRC_DIR)/meta.c $(SRC_DIR)/quote.c $(SRC_DIR)/separator.c $(SRC_DIR)/token.c \
 	$(SRC_DIR)/token_add.c $(SRC_DIR)/token_append.c $(SRC_DIR)/token_append_util.c $(SRC_DIR)/token_util.c \
 	$(SRC_DIR)/util.c $(SRC_DIR)/dollar.c $(SRC_DIR)/dollar_util.c $(SRC_DIR)/dollar_handle.c \
 	$(SRC_DIR)/assign_token_types.c $(SRC_DIR)/lexer.c $(SRC_DIR)/exec.c $(SRC_DIR)/path.c \
-	$(SRC_DIR)/ft_split.c $(SRC_DIR)/echo.c $(SRC_DIR)/env_util.c $(SRC_DIR)/export.c \
+	$(SRC_DIR)/ft_split.c $(SRC_DIR)/echo.c $(SRC_DIR)/env_util.c $(SRC_DIR)/export.c  $(SRC_DIR)/exit.c \
 	$(SRC_DIR)/built_in.c $(SRC_DIR)/cd.c $(SRC_DIR)/syntax_check_util.c $(SRC_DIR)/syntax_check.c \
 	$(SRC_DIR)/signal.c $(SRC_DIR)/dispose.c $(SRC_DIR)/print_util.c $(SRC_DIR)/token_util2.c\
 	$(SRC_DIR)/util2.c $(SRC_DIR)/util3.c $(SRC_DIR)/quote_util.c $(SRC_DIR)/exec_single_cmd.c $(SRC_DIR)/pwd.c \

@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:34:58 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/15 19:14:08 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/16 18:35:46 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,7 @@ int	which_command_built_in(t_state *state, t_token *token, \
 		return (run_export(state, token, cmd));
 	if (ft_strncmp(token->data, "env", 4) == 0)
 		return (run_env(state, cmd));
+	if (ft_strncmp(token->data, "exit", 5) == 0)
+		return (run_exit(state, token));
 	return (FAILURE);
 }

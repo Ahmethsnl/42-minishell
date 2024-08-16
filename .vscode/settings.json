@@ -11,7 +11,9 @@
 		"readline.h": "c",
 		"history.h": "c",
 		"unistd.h": "c",
-		"ioctl.h": "c"
+		"ioctl.h": "c",
+		"locale": "c",
+		"string": "c"
 	},
 	"C_Cpp.errorSquiggles": "disabled"
 }

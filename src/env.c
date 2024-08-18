@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:04:57 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/16 17:07:49 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/18 19:19:11 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ char	*get_env_value(t_state *state, const char *key)
 		i++;
 	}
 	return (NULL);
-}
+} 
 
 int	run_env(t_state *state, t_cmd *cmd)
 {

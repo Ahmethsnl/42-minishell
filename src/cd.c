@@ -5,85 +5,109 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/05 18:11:08 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/16 20:44:44 by ahmsanli         ###   ########.fr       */
+/*   Created: 2024/08/18 18:54:21 by ahmsanli          #+#    #+#             */
+/*   Updated: 2024/08/18 20:35:18 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+# include "../inc/minishell.h"
 
-static int	env_set_oldpwd(t_state *state, char *path)
+static int	set_home_path(t_state *state, t_token *token)
 {
-	path = ft_strjoin("OLDPWD=", path, 0);
-	if (!state)
-		return (FAILURE);
-	if (env_set_value(state, path) != SUCCESS)
-		return (FAILURE);
-	return (SUCCESS);
-}
-
-static int	old_path_util(t_state *state, char *old_path)
-{
-	if (env_set_oldpwd(state, old_path) != SUCCESS)
-		return (FAILURE);
-	else
-		free(old_path);
-	return (SUCCESS);
-}
-
-static int	cd_with_flag(t_state *state, t_token *token, bool is_home_set)
-{
-	char *path;
-
-	if (ft_strncmp(token->next->data, "-", 2) == 0)
+	char *home;
+	
+	home = get_env_value(state, "HOME");
+	if (!home)
 	{
-		if (is_home_set == false)
-		{
-			path = ft_strdup("OLDPWD=");
-			print_execute_err(state, token, 1, ERR_OLDPWD_NOT_SET);
-			env_set_value(state, path);
-			return (SUCCESS);
+		print_execute_err(state, token, 0, ERR_HOME_NOT_SET);
+		state->status = 1;
+		free(home);
+		home = NULL;
+		return (FAILURE);
+	}
+	if (chdir(home) == -1)
+	{
+		print_execute_err(state, token, 0, ERR_HOME_NOT_SET);
+		state->status = 1;
+		if (!home){
+			free(home);
+			home = NULL;
 		}
-		is_home_set = true;
+		return (FAILURE);
+	}
+	if (!home)
+	{
+		free(home);
+		home = NULL;
 	}
 	return (SUCCESS);
 }
 
-static int	home_set(t_state *state, char *home, t_token *token, bool is_home_set)
+static int	set_path(t_state *state, t_token *token)
 {
-	if (cd_with_flag(state, token, is_home_set))
-		return (SUCCESS);
-	if (!token->next)
+	if (chdir(token->next->data) == -1)
 	{
-		if (chdir(home) == -1)
-			return (print_execute_err(state, token, 0, ERR_HOME_NOT_SET), SUCCESS);
-		if (env_set_pwd(state) != SUCCESS)
-			return (FAILURE);
-		state->status = 0;
+		print_execute_err(state, token, 0, ERR_NO_SUCH_FILE_OR_DIR);
+		state->status = 1;
 		return (FAILURE);
 	}
+	return (SUCCESS);
+}
+
+static int	update_old_pwd(t_state *state, char *old_pwd)
+{
+	if (!old_pwd)
+	{
+		print_execute_err(state, NULL, 0, ERR_OLDPWD_NOT_SET);
+		free(old_pwd);
+		old_pwd = NULL;
+		state->status = 1;
+		return (FAILURE);
+	}
+	if (env_set_value(state, ft_strjoin("OLDPWD=", old_pwd, 0)) != SUCCESS)
+	{
+		print_execute_err(state, NULL, 0, ERR_CANT_CHANGE_DIR);
+		if (old_pwd)
+		{
+			free(old_pwd);
+			old_pwd = NULL;
+		}
+		state->status = 1;
+		return (FAILURE);
+	}
+	return (SUCCESS);
+}
+
+static int	update_pwd_old_pwd(t_state *state, char *old_pwd)
+{
+	if (env_set_pwd(state) != SUCCESS)
+		return (FAILURE);
+	if (update_old_pwd(state, old_pwd) != SUCCESS)
+		return (FAILURE);
 	return (SUCCESS);
 }
 
 int	run_cd(t_state *state, t_token *token)
-{
-	char	*home;
-	char	*old_path;
-	bool	is_home_set;
+{	
+	char *old_pwd;
 
-	old_path = getcwd(NULL, 0);
-	is_home_set = false;
 	if (!token)
 		return (FAILURE);
-	home = get_env_value(state, "HOME");
-	if (home_set(state, home, token, is_home_set) != SUCCESS)
-		return (FAILURE);
-	if (chdir(token->next->data) == -1)
-		return (print_execute_err(state, token, 1, ERR_NO_SUCH_FILE_OR_DIR));
-	if (env_set_pwd(state) != SUCCESS)
-		return (FAILURE);
-	if (old_path_util(state, old_path) != SUCCESS)
+	if (!(old_pwd = getcwd(NULL, 0)))
+	{
+		free(old_pwd);
+		old_pwd = NULL;
+	}
+	if (!token->next)
+		set_home_path(state, token);
+	else
+		set_path(state, token);
+	if (update_pwd_old_pwd(state, old_pwd) != SUCCESS)
 		return (FAILURE);
 	state->status = 0;
+	if (old_pwd)
+		free(old_pwd);
+	old_pwd = NULL;
+	system("leaks minishell");
 	return (SUCCESS);
 }

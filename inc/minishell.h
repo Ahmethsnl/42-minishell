@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:11:38 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/16 18:50:02 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/19 14:46:14 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,6 +215,7 @@ bool				token_has_cmd(t_token *token);
 int					cmd_init(t_cmd *cmd, int arr_len);
 bool				is_empty_arg(t_token *arg);
 int					env_len(t_state *state);
+void				free_pointer_variable(char **ptr);
 //	_PARSER & _LEXER	//
 void				assign_token_arr_types(t_token **token_arr);
 void				assign_token_types(t_token *token);

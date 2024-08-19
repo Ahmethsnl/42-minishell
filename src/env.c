@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:04:57 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/18 19:19:11 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/19 16:17:02 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static int	env_set_value_new(t_state *state, char *key_value)
 	state->env = str_arr_append(state->env, data);
 	if (!state->env)
 		return (free(data), FAILURE);
+	free(data);
+	free(key_value);
 	return (SUCCESS);
 }
 
@@ -85,7 +87,7 @@ char	*get_env_value(t_state *state, const char *key)
 		len = ft_strlen(key);
 		if (ft_strncmp(state->env[i], key, len) == 0
 			&& state->env[i][len] == '=')
-			return (state->env[i] + 5);
+			return (state->env[i] + ft_strlen(key) + 1);
 		i++;
 	}
 	return (NULL);

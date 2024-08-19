@@ -134,7 +134,7 @@ typedef struct s_cmd
 
 //void				print_unknown_err(t_state *state);
 //int					print_exec_err(t_state *state, const t_token *token,
-						int status, int err);
+//						int status, int err);
 //void				print_fatal_err(const char *msg, const int err);
 char				*ft_strchr(const char *s, int c);
 char				*ft_strdup(const char *src);
@@ -233,11 +233,11 @@ void				extract_dollar_key_values(char **data, t_state *state,
 char				*get_dollar_value(char *key, t_state *state);
 //int					**pipe_fds_init(int pipe_count);
 //int					set_red_file_fds(t_token *token, t_cmd *cmd,
-						t_state *state);
+//						t_state *state);
 //int					set_cmd_arg_and_path(t_token *token, t_state *state,
-						t_cmd *cmd, int **pipe_fds);
+//						t_cmd *cmd, int **pipe_fds);
 //int					handle_redl(t_token *token, t_cmd *cmd,
-						bool has_last_heredoc, t_state *state);
+						bool has_last_heredoc(t_state *state);
 //int					handle_redr(t_token *token, t_cmd *cmd, t_state *state);
 //int					handle_redrr(t_token *token, t_cmd *cmd, t_state *state);
 //int					handle_redll(t_token *token, t_cmd *cmd, int i);

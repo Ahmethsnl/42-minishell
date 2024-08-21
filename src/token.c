@@ -18,7 +18,7 @@ void	token_dispose(t_state *state, t_token **token)
 		return ;
 	if (*token)
 	{
-		ft_addarr_garbage((*token)->data);
+		ft_addarr_garbage(state, (*token)->data);
 		(*token)->data = NULL;
 	}
 	ft_addarr_garbage(state, *token);

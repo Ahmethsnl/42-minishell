@@ -12,7 +12,7 @@
 
 #include "../inc/minishell.h"
 
-int	exec_cd(t_state *state, t_token *token)
+int	run_cd(t_state *state, t_token *token)
 {
 	const char	*home;
 

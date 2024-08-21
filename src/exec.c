@@ -23,6 +23,7 @@ int	run_executor(t_state *state)
 {
 	int			arr_len;
 	t_cmd		command;
+	int			**pipe_fds;
 
 	if (!state && !state->token_arr)
 		return (FAILURE);
@@ -33,5 +34,8 @@ int	run_executor(t_state *state)
 		return (FAILURE);
 	if (arr_len == 1)
 		return (exec_single_command(state->token_arr[0], state, &command));
+	pipe_fds = pipe_fds_init(arr_len - 1);
+	if (!pipe_fds)
+		return (free(cmd.heredoc), FAILURE);
 	return (SUCCESS);
 }

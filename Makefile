@@ -12,7 +12,7 @@ M_SRC = $(SRC_DIR)/meta.c $(SRC_DIR)/quote.c $(SRC_DIR)/separator.c $(SRC_DIR)/t
 	$(SRC_DIR)/signal.c $(SRC_DIR)/dispose.c $(SRC_DIR)/print_util.c $(SRC_DIR)/token_util2.c\
 	$(SRC_DIR)/util2.c $(SRC_DIR)/util3.c $(SRC_DIR)/quote_util.c $(SRC_DIR)/exec_single_cmd.c $(SRC_DIR)/pwd.c \
 	$(SRC_DIR)/env.c $(SRC_DIR)/exec_utils.c $(SRC_DIR)/built_in_utils.c $(SRC_DIR)/error.c cmd/minishell.c \
-	$(SRC_DIR)/unset.c
+	$(SRC_DIR)/unset.c $(SRC_DIR)/redirect.c
 
 INC_DIR = -I./inc -I./lib/readline/include
 SRC = $(M_SRC)
@@ -21,10 +21,6 @@ READLINE = -L./lib/readline/lib -I./lib/readline/include/readline -lreadline
 DIR = $(shell echo $(PWD))
 RM = rm -rf
 RL = ./lib/readline/lib/libreadline.a
-
-#EXEC_DIR = $(SRC_DIR)/exec
-#PARSER_DIR = $(SRC_DIR)/parser
-#UTIL_DIR = $(SRC_DIR)/util
 
 all: $(NAME)
 

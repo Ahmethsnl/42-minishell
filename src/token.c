@@ -25,13 +25,13 @@ void	token_dispose(t_state *state, t_token **token)
 	*token = NULL;
 }
 
-void	token_dispose_all(t_token **token)
+void	token_dispose_all(t_state *state, t_token **token)
 {
 	if (!token || !*token)
 		return ;
 	if ((*token)->next)
 		token_dispose_all(&(*token)->next);
-	token_dispose(token);
+	token_dispose(state, token);
 }
 
 void	token_arr_dispose(t_state *state, t_token ***token_arr)
@@ -43,7 +43,7 @@ void	token_arr_dispose(t_state *state, t_token ***token_arr)
 	i = 0;
 	while ((*token_arr)[i])
 	{
-		token_dispose_all(&(*token_arr)[i]);
+		token_dispose_all(state, &(*token_arr)[i]);
 		i++;
 	}
 	ft_addarr_garbage(state, *token_arr);
@@ -62,7 +62,7 @@ bool	token_sep_md_init(t_token_sep_md *md, t_token *token)
 	return (false);
 }
 
-t_token	**token_separate_by_pipe(t_token *token)
+t_token	**token_separate_by_pipe(t_state *state, t_token *token)
 {
 	t_token_sep_md	md;
 
@@ -78,7 +78,7 @@ t_token	**token_separate_by_pipe(t_token *token)
 			md.iter->prev->next = NULL;
 			md.iter = md.iter->next;
 			if (md.temp)
-				token_dispose(&md.temp);
+				token_dispose(state, &md.temp);
 			if (md.temp_root && md.temp_root->type == PIPE)
 				return (NULL);
 			md.i++;

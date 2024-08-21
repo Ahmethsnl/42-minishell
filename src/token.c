@@ -18,10 +18,10 @@ void	token_dispose(t_token **token)
 		return ;
 	if (*token)
 	{
-		free((*token)->data);
+		ft_addarr_garbage((*token)->data);
 		(*token)->data = NULL;
 	}
-	free(*token);
+	ft_addarr_garbage(*token);
 	*token = NULL;
 }
 
@@ -46,7 +46,7 @@ void	token_arr_dispose(t_token ***token_arr)
 		token_dispose_all(&(*token_arr)[i]);
 		i++;
 	}
-	free(*token_arr);
+	ft_addarr_garbage(*token_arr);
 	*token_arr = NULL;
 }
 

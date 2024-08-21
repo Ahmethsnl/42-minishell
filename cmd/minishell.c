@@ -91,6 +91,7 @@ static void	shell_routine(t_state *state)
 			continue ;
 		}
 		exec_start(state);
+		ft_free_garbage(state);
 	}
 }
 

@@ -89,6 +89,13 @@
 
 extern int			g_sig;
 
+typedef struct s_garbage
+{
+	void				*garbage_data;
+	struct s_garbage	*next;
+}	t_garbage;
+
+
 typedef struct s_syntax
 {
 	unsigned char	duplex;
@@ -146,6 +153,8 @@ typedef struct s_state
 	t_token			**token_arr;
 	int				cmd_ct;
 	int				err;
+	t_garbage		*garbage;
+	t_garbage		*last_garbage;
 }					t_state;
 
 typedef struct s_cmd
@@ -216,6 +225,9 @@ int					cmd_init(t_cmd *cmd, int arr_len);
 bool				is_empty_arg(t_token *arg);
 int					env_len(t_state *state);
 void				free_pointer_variable(char **ptr);
+void				ft_add_garbage(t_state *s, void *data);
+void				ft_addarr_garbage(t_state *s, void **ptr);
+void				ft_free_garbage(t_state *s);
 //	_PARSER & _LEXER	//
 void				assign_token_arr_types(t_token **token_arr);
 void				assign_token_types(t_token *token);

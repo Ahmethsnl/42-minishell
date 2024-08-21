@@ -52,7 +52,7 @@ t_token	**run_lexer(t_state *state)
 	if (!root)
 		return (NULL);
 	if (token_is_all_space(root))
-		return (token_dispose_all(&root), state_dispose_single(&state), NULL);
+		return (token_dispose_all(state, &root), state_dispose_single(&state), NULL);
 	root = extract_meta_chars(&root);
 	handle_dollar(&root, state);
 	handle_unnecessary_quotes(root);

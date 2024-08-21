@@ -284,8 +284,8 @@ void				token_append_meta_data_init(t_token_append_meta_data *md, \
 					t_token **token);
 int					token_append_str(t_token **token, int start, int i);
 char				**token_to_arg(t_token *token, char *cmd_path);
-void				token_dispose(t_token **token);
-void				token_dispose_all(t_token **token);
+void				token_dispose(t_state *state, t_token **token);
+void				token_dispose_all(t_state *state, t_token **token);
 void				token_arr_dispose(t_token ***token_arr);
 bool				token_sep_md_init(t_token_sep_md *md, t_token *token);
 t_token				**token_separate_by_pipe(t_token *token);

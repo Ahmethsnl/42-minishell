@@ -39,17 +39,17 @@ t_token	*separate_prompt_by_space(char *prompt)
 	return (root);
 }
 
-int	create_separated_node(t_token **root, char *prompt, int start, int i)
+int	create_separated_node(t_state *state, t_token **root, char *prompt, int start, int i)
 {
 	char	*data;
 	t_token	*new;
 
 	data = ft_substr(prompt, start, i - start);
 	if (!data)
-		return (token_dispose(root), 1);
+		return (token_dispose(state, root), 1);
 	new = token_new(data, NONE);
 	if (!new)
-		return (free(data), token_dispose(root), 1);
+		return (free(data), token_dispose(state, root), 1);
 	*root = token_add_last(*root, new);
 	if (!*root)
 		return (free(data), free(new), 1);
@@ -67,7 +67,7 @@ int	pass_data(char *prompt, int *i)
 	return (0);
 }
 
-void	token_insert_dollar_nodes(t_token **token)
+void	token_insert_dollar_nodes(t_state *state, t_token **token)
 {
 	t_token	*sub_nodes;
 	t_token	*temp;
@@ -86,13 +86,13 @@ void	token_insert_dollar_nodes(t_token **token)
 		}
 		else
 			*token = temp->next;
-		token_dispose(&temp);
+		token_dispose(state, &temp);
 		return ;
 	}
 	token_insertion(token, temp, sub_nodes);
 }
 
-void	token_insertion(t_token **token, t_token *temp, \
+void	token_insertion(t_state *state, t_token **token, t_token *temp, \
 	t_token *sub_nodes)
 {
 	t_token	*sub_last;
@@ -111,5 +111,5 @@ void	token_insertion(t_token **token, t_token *temp, \
 		sub_last->next = temp->next;
 	if (temp->next)
 		temp->next->prev = sub_last;
-	token_dispose(&temp);
+	token_dispose(state, &temp);
 }

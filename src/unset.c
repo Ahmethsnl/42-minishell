@@ -46,13 +46,13 @@ static bool	validate_unset_arg(t_state *state, t_token *arg)
 	while (arg)
 	{
 		if (!is_al_underscore(arg->data[0]))
-			return (print_exec_err(state, arg, 1, ERRP_NOT_A_VALID_IDENTIFIER),
+			return (print_execute_err(state, arg, 1, ERRP_NOT_A_VALID_IDENTIFIER),
 				false);
 		i = 0;
 		while (arg->data[i])
 		{
 			if (!is_alnum_underscore(arg->data[i]))
-				return (print_exec_err(state, arg, 1,
+				return (print_execute_err(state, arg, 1,
 						ERRP_NOT_A_VALID_IDENTIFIER), false);
 			i++;
 		}

@@ -14,6 +14,7 @@
 # define MINISHELL_H
 
 # include <stdio.h>
+# include <fcntl.h>
 # include <stdbool.h>
 # include <stdbool.h>
 # include <errno.h>

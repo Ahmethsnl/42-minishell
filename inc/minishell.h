@@ -216,6 +216,7 @@ int					cmd_init(t_cmd *cmd, int arr_len);
 bool				is_empty_arg(t_token *arg);
 int					env_len(t_state *state);
 char				**str_arr_remove(char **str_arr, char *key);
+int					w_exit_status(int status);
 //	_PARSER & _LEXER	//
 void				assign_token_arr_types(t_token **token_arr);
 void				assign_token_types(t_token *token);
@@ -305,6 +306,9 @@ int					handle_redll(t_token *token, t_cmd *cmd, int i);
 int					handle_redr(t_token *token, t_cmd *cmd, t_state *state);
 int					handle_redll(t_token *token, t_cmd *cmd, int i);
 int					handle_redr(t_token *token, t_cmd *cmd, t_state *state);
-
+int					set_red_file(t_token *token, t_cmd *cmd, t_state *state);
+int					handle_fds(t_token *token, t_cmd *cmd, t_state *state, \
+					bool has_last_heredoc);
+int					set_heredoc(t_token *token, t_cmd *cmd, int i);
 
 #endif

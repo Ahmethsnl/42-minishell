@@ -74,7 +74,7 @@ int	exec_single_command(t_token *token, t_state *state, t_cmd *command)
 		return (FAILURE);
 	if (exec_single_command_prepare(token, state, command) == FAILURE)
 		return (cmd_dispose(command), FAILURE);
-	if (exec_single_cmd_with_fork(cmd, state) != SUCCESS)
-		return (cmd_dispose(cmd), FAILURE);
+	if (exec_single_cmd_with_fork(command, state) != SUCCESS)
+		return (cmd_dispose(command), FAILURE);
 	return (cmd_dispose(command), SUCCESS);
 }

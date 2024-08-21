@@ -12,6 +12,11 @@
 
 #include "../inc/minishell.h"
 
+int	w_exit_status(int status)
+{
+	return ((status >> 8) & 0x000000ff);
+}
+
 bool	token_has_cmd(t_token *token)
 {
 	if (!token)

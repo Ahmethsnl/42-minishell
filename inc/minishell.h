@@ -303,10 +303,11 @@ void				cmd_dispose(t_cmd *cmd);
 char				*get_env_path_arr_as_str(char **env);
 char				*get_cmd_absolute_path(t_token *token, t_state *state);
 char				*get_cmd_path(t_token *token, t_state *state);
+int					handle_redl(t_token *token, t_cmd *cmd, \
+					bool has_last_heredoc, t_state *state);
 int					handle_redll(t_token *token, t_cmd *cmd, int i);
 int					handle_redr(t_token *token, t_cmd *cmd, t_state *state);
-int					handle_redll(t_token *token, t_cmd *cmd, int i);
-int					handle_redr(t_token *token, t_cmd *cmd, t_state *state);
+int					handle_redrr(t_token *token, t_cmd *cmd, t_state *state);
 int					set_red(t_token *token, t_cmd *cmd, t_state *state);
 int					handle_fds(t_token *token, t_cmd *cmd, t_state *state, \
 					bool has_last_heredoc);

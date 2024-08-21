@@ -255,11 +255,11 @@ bool				is_unnecessary_quote(int *quote, char data);
 int					count_unnecessary_quotes(char *data);
 bool				has_unnecessary_quotes(char *data);
 t_token				*separate_prompt_by_space(char *prompt);
-int					create_separated_node(t_token **root, char *prompt, \
+int					create_separated_node(t_state *state, t_token **root, char *prompt, \
 					int start, int i);
 int					pass_data(char *prompt, int *i);
-void				token_insert_dollar_nodes(t_token **token);
-void				token_insertion(t_token **token, t_token *temp, \
+void				token_insert_dollar_nodes(t_state *state, t_token **token);
+void				token_insertion(t_state *state, t_token **token, t_token *temp, \
 					t_token *sub_nodes);
 void				ctrl_d(int sig);
 void				ctrl_c(int sig);

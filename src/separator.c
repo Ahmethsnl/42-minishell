@@ -12,7 +12,7 @@
 
 #include "../inc/minishell.h"
 
-t_token	*separate_prompt_by_space(char *prompt)
+t_token	*separate_prompt_by_space(t_state *state, char *prompt)
 {
 	t_token	*root;
 	int		start;
@@ -31,7 +31,7 @@ t_token	*separate_prompt_by_space(char *prompt)
 		while (prompt[i] && (prompt[i] != ' ' && prompt[i] != '\t'))
 			if (pass_data(prompt, &i) != SUCCESS)
 				return (0);
-		if (create_separated_node(&root, prompt, start, i) != SUCCESS)
+		if (create_separated_node(state, &root, prompt, start, i) != SUCCESS)
 			return (NULL);
 		while (prompt[i] && prompt[i] == ' ')
 			i++;

@@ -306,7 +306,7 @@ int					handle_redll(t_token *token, t_cmd *cmd, int i);
 int					handle_redr(t_token *token, t_cmd *cmd, t_state *state);
 int					handle_redll(t_token *token, t_cmd *cmd, int i);
 int					handle_redr(t_token *token, t_cmd *cmd, t_state *state);
-int					set_red_file(t_token *token, t_cmd *cmd, t_state *state);
+int					set_red(t_token *token, t_cmd *cmd, t_state *state);
 int					handle_fds(t_token *token, t_cmd *cmd, t_state *state, \
 					bool has_last_heredoc);
 int					set_heredoc(t_token *token, t_cmd *cmd, int i);

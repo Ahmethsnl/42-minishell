@@ -32,6 +32,8 @@ int	exec_single_command_prepare(t_token *token, t_state *state, t_cmd *cmd)
 		return (FAILURE);
 	if (!cmd->cmd)
 		return (FAILURE);
+	if (cmd->in == NAFD)
+		cmd->in = cmd->heredoc[0];
 	return (SUCCESS);
 }
 
@@ -41,7 +43,5 @@ int	exec_single_command(t_token *token, t_state *state, t_cmd *command)
 		return (FAILURE);
 	if (exec_single_command_prepare(token, state, command) == FAILURE)
 		return (cmd_dispose(command), FAILURE);
-	which_command_built_in(state, token, command, NULL);
-	cmd_dispose(command);
-	return (SUCCESS);
+	return (cmd_dispose(command), SUCCESS);
 }

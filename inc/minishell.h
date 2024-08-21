@@ -215,6 +215,7 @@ bool				token_has_cmd(t_token *token);
 int					cmd_init(t_cmd *cmd, int arr_len);
 bool				is_empty_arg(t_token *arg);
 int					env_len(t_state *state);
+char				**str_arr_remove(char **str_arr, char *key);
 //	_PARSER & _LEXER	//
 void				assign_token_arr_types(t_token **token_arr);
 void				assign_token_types(t_token *token);
@@ -291,6 +292,7 @@ int					run_pwd(t_cmd *cmd, t_state *state);
 int					run_export(t_state *state, t_token *token, t_cmd *cmd);
 int					run_env(t_state *state, t_cmd *cmd);
 int					run_echo(t_state *state, t_token *token, t_cmd *cmd);
+int					run_unset(t_state *state, t_token *token);
 int					run_exit(t_state *state, t_token *token);
 char				*get_env_value(t_state *state, const char *key);
 int					env_set_value(t_state *state, char *key_value);

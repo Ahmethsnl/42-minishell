@@ -38,6 +38,8 @@ int	which_command_built_in(t_state *state, t_token *token, \
 		return (run_export(state, token, cmd));
 	if (ft_strncmp(token->data, "env", 4) == 0)
 		return (run_env(state, cmd));
+	if (ft_strncmp(token->data, "unset", 6) == 0)
+		return (run_unset(state, token));
 	if (ft_strncmp(token->data, "exit", 5) == 0)
 		return (run_exit(state, token));
 	return (FAILURE);

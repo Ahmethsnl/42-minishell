@@ -33,5 +33,5 @@ int	run_executor(t_state *state)
 		return (FAILURE);
 	if (arr_len == 1)
 		return (exec_single_command(state->token_arr[0], state, &command));
-	return (FAILURE);
+	return (SUCCESS);
 }

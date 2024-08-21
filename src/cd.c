@@ -12,57 +12,27 @@
 
 #include "../inc/minishell.h"
 
-static int	env_set_oldpwd(t_state *state, char *path)
+int	exec_cd(t_state *state, t_token *token)
 {
-	path = ft_strjoin("OLDPWD=", path, 0);
-	if (!state)
-		return (FAILURE);
-	if (env_set_value(state, path) != SUCCESS)
-		return (FAILURE);
-	return (SUCCESS);
-}
+	const char	*home;
 
-static int	old_path_util(t_state *state, char *old_path)
-{
-	if (env_set_oldpwd(state, old_path) != SUCCESS)
+	if (!token)
 		return (FAILURE);
-	else
-		free(old_path);
-	return (SUCCESS);
-}
-
-static int	home_set(t_state *state, char *home, t_token *token)
-{
 	if (!token->next)
 	{
+		home = env_get_value(state, "HOME");
 		if (!home)
-			return (print_execute_err(state, token, 1, ERR_HOME_NOT_SET));
+			return (print_exec_err(state, token, 1, ERR_HOME_NOT_SET));
 		if (chdir(home) == -1)
-			return (print_execute_err(state, token, 1, ERR_CANT_CHANGE_DIR));
+			return (print_exec_err(state, token, 114, ERR_CANT_CHANGE_DIR));
 		if (env_set_pwd(state) != SUCCESS)
 			return (FAILURE);
 		state->status = 0;
-		return (FAILURE);
+		return (SUCCESS);
 	}
-	return (SUCCESS);
-}
-
-int	run_cd(t_state *state, t_token *token)
-{
-	char	*home;
-	char	*old_path;
-
-	old_path = getcwd(NULL, 0);
-	if (!token)
-		return (FAILURE);
-	home = get_env_value(state, "HOME");
-	if (home_set(state, home, token) != SUCCESS)
-		return (FAILURE);
 	if (chdir(token->next->data) == -1)
-		return (print_execute_err(state, token, 1, ERR_NO_SUCH_FILE_OR_DIR));
+		return (print_exec_err(state, token, 1, ERR_NO_SUCH_FILE_OR_DIR));
 	if (env_set_pwd(state) != SUCCESS)
-		return (FAILURE);
-	if (old_path_util(state, old_path) != SUCCESS)
 		return (FAILURE);
 	state->status = 0;
 	return (SUCCESS);

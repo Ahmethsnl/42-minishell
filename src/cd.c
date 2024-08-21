@@ -21,7 +21,7 @@ static int	set_home_path(t_state *state, t_token *token)
 	{
 		print_execute_err(state, token, 0, ERR_HOME_NOT_SET);
 		state->status = 1;
-		ft_addarr_garbage(&home);
+		ft_addarr_garbage(state, &home);
 		return (FAILURE);
 	}
 	if (chdir(home) == -1)
@@ -29,11 +29,11 @@ static int	set_home_path(t_state *state, t_token *token)
 		print_execute_err(state, token, 0, ERR_HOME_NOT_SET);
 		state->status = 1;
 		if (!home)
-			ft_addarr_garbage(&home);
+			ft_addarr_garbage(state, &home);
 		return (FAILURE);
 	}
 	if (!home)
-		ft_addarr_garbage(&home);
+		ft_addarr_garbage(state, &home);
 	return (SUCCESS);
 }
 
@@ -53,7 +53,7 @@ static int	update_old_pwd(t_state *state, char **old_pwd)
 	if (!*old_pwd)
 	{
 		print_execute_err(state, NULL, 0, ERR_OLDPWD_NOT_SET);
-		ft_addarr_garbage(old_pwd);
+		ft_addarr_garbage(state, old_pwd);
 		state->status = 1;
 		return (FAILURE);
 	}
@@ -61,9 +61,9 @@ static int	update_old_pwd(t_state *state, char **old_pwd)
 		return (SUCCESS);
 	print_execute_err(state, NULL, 0, ERR_CANT_CHANGE_DIR);
 	if (*old_pwd)
-		ft_addarr_garbage(old_pwd);
+		ft_addarr_garbage(state, old_pwd);
 	if (!*old_pwd)
-		ft_addarr_garbage(old_pwd);
+		ft_addarr_garbage(state, old_pwd);
 	state->status = 1;
 	return (FAILURE);
 }
@@ -85,7 +85,7 @@ int	run_cd(t_state *state, t_token *token)
 		return (FAILURE);
 	if (!(old_pwd = getcwd(NULL, 256)))
 	{
-		ft_addarr_garbage(old_pwd);
+		ft_addarr_garbage(state, old_pwd);
 		old_pwd = NULL;
 	}
 	if (!token->next)
@@ -96,7 +96,7 @@ int	run_cd(t_state *state, t_token *token)
 		return (FAILURE);
 	state->status = 0;
 	if (old_pwd)
-		ft_addarr_garbage(old_pwd);
+		ft_addarr_garbage(state, old_pwd);
 	old_pwd = NULL;
 	return (SUCCESS);
 }

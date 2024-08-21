@@ -12,7 +12,7 @@
 
 #include "../inc/minishell.h"
 
-void	token_dispose(t_token **token)
+void	token_dispose(t_state *state, t_token **token)
 {
 	if (!token)
 		return ;
@@ -21,7 +21,7 @@ void	token_dispose(t_token **token)
 		ft_addarr_garbage((*token)->data);
 		(*token)->data = NULL;
 	}
-	ft_addarr_garbage(*token);
+	ft_addarr_garbage(state, *token);
 	*token = NULL;
 }
 
@@ -34,7 +34,7 @@ void	token_dispose_all(t_token **token)
 	token_dispose(token);
 }
 
-void	token_arr_dispose(t_token ***token_arr)
+void	token_arr_dispose(t_state *state, t_token ***token_arr)
 {
 	int	i;
 
@@ -46,7 +46,7 @@ void	token_arr_dispose(t_token ***token_arr)
 		token_dispose_all(&(*token_arr)[i]);
 		i++;
 	}
-	ft_addarr_garbage(*token_arr);
+	ft_addarr_garbage(state, *token_arr);
 	*token_arr = NULL;
 }
 

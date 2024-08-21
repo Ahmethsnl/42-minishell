@@ -24,8 +24,6 @@ static int	env_set_value_new(t_state *state, char *key_value)
 	state->env = str_arr_append(state->env, data);
 	if (!state->env)
 		return (free(data), FAILURE);
-	free(data);
-	free(key_value);
 	return (SUCCESS);
 }
 

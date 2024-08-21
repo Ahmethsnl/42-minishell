@@ -63,6 +63,8 @@ int	print_execute_err(t_state *state, const t_token *token, int status, int err)
 		eprintln(ESTR_NOT_VALID_IN_THIS_CTX);
 	else if (err == ERR_IS_DIR)
 		eprintln(ESTR_IS_DIR);
+	else if (err == ERR_HOME_NOT_SET)
+		eprintln(ESTR_HOME_NOT_SET);
 	else
 		eprintln(ESTR_UNEXPECTED);
 	return (FAILURE);

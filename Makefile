@@ -2,7 +2,7 @@ NAME = minishell
 OBJ_DIR = build
 SRC_DIR = src
 CC = gcc
-CFLAGS = -g -Wall -Wextra -Werror #-fsanitize=address
+CFLAGS = -g -Wall -Wextra -Werror -fsanitize=address
 M_SRC = $(SRC_DIR)/meta.c $(SRC_DIR)/quote.c $(SRC_DIR)/separator.c $(SRC_DIR)/token.c \
 	$(SRC_DIR)/token_add.c $(SRC_DIR)/token_append.c $(SRC_DIR)/token_append_util.c $(SRC_DIR)/token_util.c \
 	$(SRC_DIR)/util.c $(SRC_DIR)/dollar.c $(SRC_DIR)/dollar_util.c $(SRC_DIR)/dollar_handle.c \

@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:25:24 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/15 19:11:14 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/22 14:12:55 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	run_executor(t_state *state)
 {
 	int			arr_len;
 	t_cmd		command;
-	int			**pipe_fds;
+	// int			**pipe_fds;
 
 	if (!state && !state->token_arr)
 		return (FAILURE);

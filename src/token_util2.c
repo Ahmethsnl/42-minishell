@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:11:19 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/07 19:52:52 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/22 18:09:57 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,11 @@ int **pipe_fds)
 {
 	if (which_command_built_in(state, token, cmd, pipe_fds) != SUCCESS)
 	{
+		free(token->data);
 		token->data = NULL;
 		return (cmd_dispose(cmd), FAILURE);
 	}
+	free(token->data);
 	token->data = NULL;
 	return (cmd_dispose(cmd), SUCCESS);
 }

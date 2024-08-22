@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:10:35 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/07 18:57:39 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/22 16:33:33 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ t_token	*extract_meta_chars(t_token **root)
 
 bool	is_meta(t_token_type type)
 {
-	return (type == PIPE || type == RED_L || type == RED_LL || type == RED_R
-		|| type == RED_RR);
+	return (type == PIPE || type == RED_INPUT || type == RED_HEREDOC || type == RED_OUTPUT
+		|| type == RED_APPEND);
 }
 
 bool	is_meta_char(char *data, int i)
@@ -63,13 +63,13 @@ t_token_type	get_meta_type(char *data, int i)
 	if (data[i] == '|')
 		return (PIPE);
 	if (data[i] == '<' && data[i + 1] == '<')
-		return (RED_LL);
+		return (RED_HEREDOC);
 	if (data[i] == '<')
-		return (RED_L);
+		return (RED_INPUT);
 	if (data[i] == '>' && data[i + 1] == '>')
-		return (RED_RR);
+		return (RED_APPEND);
 	if (data[i] == '>')
-		return (RED_R);
+		return (RED_OUTPUT);
 	else
 		return (NONE);
 }

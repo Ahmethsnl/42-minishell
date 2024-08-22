@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:10:09 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/15 19:07:08 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/22 16:36:57 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	assign_token_types_file(t_token *token)
 	temp = token;
 	while (temp)
 	{
-		if (temp->type == RED_L || temp->type == RED_R || temp->type == RED_RR)
+		if (temp->type == RED_INPUT || temp->type == RED_OUTPUT || temp->type == RED_APPEND)
 		{
 			temp = temp->next;
 			if (temp)
@@ -43,11 +43,11 @@ static void	assign_token_types_file(t_token *token)
 			else
 				break ;
 		}
-		else if (temp->type == RED_LL)
+		else if (temp->type == RED_HEREDOC)
 		{
 			temp = temp->next;
 			if (temp)
-				temp->type = RED_HEREDOC;
+				temp->type = RED_HEREDOC_TYPE;
 			else
 				break ;
 		}
@@ -62,7 +62,7 @@ void	assign_token_types(t_token *token)
 	assign_token_types_file(token);
 	while (token && token->type != NONE && token->type != ARG)
 		token = token->next;
-	if (token && token->type != RED_RR)
+	if (token && token->type != RED_APPEND)
 	{
 		token->type = CMD;
 		token = token->next;

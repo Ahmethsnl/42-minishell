@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:11:16 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/07 19:58:57 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/22 16:36:17 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,16 @@ bool	token_is_just_meta(t_token **token)
 		return (false);
 	if ((*token)->data[0] == '>' && (*token)->data[1] == '>'
 		&& (*token)->data[2] == '\0')
-		(*token)->type = RED_RR;
+		(*token)->type = RED_APPEND;
 	else if ((*token)->data[0] == '<' && (*token)->data[1] == '<'
 		&& (*token)->data[2] == '\0')
-		(*token)->type = RED_LL;
+		(*token)->type = RED_HEREDOC;
 	else if ((*token)->data[0] == '|' && (*token)->data[1] == '\0')
 		(*token)->type = PIPE;
 	else if ((*token)->data[0] == '<' && (*token)->data[1] == '\0')
-		(*token)->type = RED_L;
+		(*token)->type = RED_INPUT;
 	else if ((*token)->data[0] == '>' && (*token)->data[1] == '\0')
-		(*token)->type = RED_R;
+		(*token)->type = RED_OUTPUT;
 	else
 		return (false);
 	return (true);

@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:11:38 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/16 18:50:02 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/22 18:06:39 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,12 +104,12 @@ typedef enum e_token_type
 	CMD,
 	ARG,
 	PIPE,
-	RED_L,
-	RED_LL,
-	RED_R,
-	RED_RR,
+	RED_INPUT,
+	RED_HEREDOC,
+	RED_OUTPUT,
+	RED_APPEND,
 	RED_FILE,
-	RED_HEREDOC
+	RED_HEREDOC_TYPE
 }					t_token_type;
 
 typedef struct s_token
@@ -168,7 +168,7 @@ int					ft_strcmp(char *s1, char *s2);
 char				*ft_strdup(const char *src);
 char				*ft_substr(char const *s, int start, int len);
 char				*ft_itoa(int n);
-char				*ft_strjoin(char const *s1, char const *s2, bool flag_free);
+char				*ft_strjoin(char const *s1, char const *s2, int flag_free);
 int					ft_atoi(const char *str);
 char				*ft_strchr(const char *s, int c);
 bool				is_al_underscore(char c);
@@ -303,11 +303,11 @@ void				cmd_dispose(t_cmd *cmd);
 char				*get_env_path_arr_as_str(char **env);
 char				*get_cmd_absolute_path(t_token *token, t_state *state);
 char				*get_cmd_path(t_token *token, t_state *state);
-int					handle_redl(t_token *token, t_cmd *cmd, \
+int					handle_red_input(t_token *token, t_cmd *cmd, \
 					bool has_last_heredoc, t_state *state);
-int					handle_redll(t_token *token, t_cmd *cmd, int i);
-int					handle_redr(t_token *token, t_cmd *cmd, t_state *state);
-int					handle_redrr(t_token *token, t_cmd *cmd, t_state *state);
+int					handle_red_heredoc(t_token *token, t_cmd *cmd, int i);
+int					handle_red_output(t_token *token, t_cmd *cmd, t_state *state);
+int					handle_red_append(t_token *token, t_cmd *cmd, t_state *state);
 int					set_red(t_token *token, t_cmd *cmd, t_state *state);
 int					handle_fds(t_token *token, t_cmd *cmd, t_state *state, \
 					bool has_last_heredoc);

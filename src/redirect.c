@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmsanli <ahmsanli@student.42istanbul.com. +#+  +:+       +#+        */
+/*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:17:30 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/21 16:17:30 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/22 16:03:10 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-int	handle_redl(t_token *token, t_cmd *cmd, \
+int	handle_red_input(t_token *token, t_cmd *cmd, \
 	bool has_last_heredoc, t_state *state)
 {
 	t_token	*temp;
@@ -30,14 +30,14 @@ int	handle_redl(t_token *token, t_cmd *cmd, \
 		close(open(temp->data, O_RDONLY));
 	else
 	{
-		if (cmd->in != -2)
+		if (cmd->in != NAFD)
 			close(cmd->in);
 		cmd->in = open(temp->data, O_RDONLY);
 	}
 	return (SUCCESS);
 }
 
-int	handle_redll(t_token *token, t_cmd *cmd, int i)
+int	handle_red_heredoc(t_token *token, t_cmd *cmd, int i)
 {
 	t_token	*temp;
 	char	*buf;
@@ -61,12 +61,12 @@ int	handle_redll(t_token *token, t_cmd *cmd, int i)
 	g_sig = AFTER_HEREDOC;
 	free(buf);
 	close(fd[1]);
-	if (cmd->heredoc[i] != -2)
+	if (cmd->heredoc[i] != NAFD)
 		close(cmd->heredoc[i]);
 	return (cmd->heredoc[i] = fd[0], SUCCESS);
 }
 
-int	handle_redr(t_token *token, t_cmd *cmd, t_state *state)
+int	handle_red_output(t_token *token, t_cmd *cmd, t_state *state)
 {
 	t_token	*temp;
 
@@ -90,7 +90,7 @@ int	handle_redr(t_token *token, t_cmd *cmd, t_state *state)
 	return (SUCCESS);
 }
 
-int	handle_redrr(t_token *token, t_cmd *cmd, t_state *state)
+int	handle_red_append(t_token *token, t_cmd *cmd, t_state *state)
 {
 	t_token	*temp;
 

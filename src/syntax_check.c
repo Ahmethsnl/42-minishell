@@ -1,5 +1,16 @@
-#include "minishell.h"
-#include <unistd.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   syntax_check.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/21 21:11:04 by ahmsanli          #+#    #+#             */
+/*   Updated: 2024/08/07 18:39:54 by ahmsanli         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../inc/minishell.h"
 
 int	is_space(char character)
 {

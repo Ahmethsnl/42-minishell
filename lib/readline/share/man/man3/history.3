@@ -379,11 +379,11 @@ and containing structure.
 .Fn1 "histdata_t" free_history_entry "HIST_ENTRY *histent"
 Free the history entry \fIhistent\fP and any history library private
 data associated with it.  Returns the application-specific data
-so the caller can smash of it.
+so the caller can dispose of it.
 
 .Fn3 "HIST_ENTRY *" replace_history_entry "int which" "const char *line" "histdata_t data"
 Make the history entry at offset \fIwhich\fP have \fIline\fP and \fIdata\fP.
-This returns the old entry so the caller can smash of any
+This returns the old entry so the caller can dispose of any
 application-specific data.  In the case
 of an invalid \fIwhich\fP, a \fBNULL\fP pointer is returned.
 

@@ -1,7 +1,18 @@
-#include "minishell.h"
-#include <stdlib.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   token.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kkarakus <kkarakus@student.42istanbul.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/21 21:11:21 by ahmsanli          #+#    #+#             */
+/*   Updated: 2024/08/22 12:38:42 by kkarakus         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	token_smash(t_token **token)
+#include "../inc/minishell.h"
+
+void	token_dispose(t_token **token)
 {
 	if (!token)
 		return ;
@@ -14,16 +25,16 @@ void	token_smash(t_token **token)
 	*token = NULL;
 }
 
-void	token_smash_all(t_token **token)
+void	token_dispose_all(t_token **token)
 {
 	if (!token || !*token)
 		return ;
 	if ((*token)->next)
-		token_smash_all(&(*token)->next);
-	token_smash(token);
+		token_dispose_all(&(*token)->next);
+	token_dispose(token);
 }
 
-void	token_arr_smash(t_token ***token_arr)
+void	token_arr_dispose(t_token ***token_arr)
 {
 	int	i;
 
@@ -32,7 +43,7 @@ void	token_arr_smash(t_token ***token_arr)
 	i = 0;
 	while ((*token_arr)[i])
 	{
-		token_smash_all(&(*token_arr)[i]);
+		token_dispose_all(&(*token_arr)[i]);
 		i++;
 	}
 	free(*token_arr);
@@ -51,6 +62,7 @@ bool	token_sep_md_init(t_token_sep_md *md, t_token *token)
 	return (false);
 }
 
+
 t_token	**token_separate_by_pipe(t_token *token)
 {
 	t_token_sep_md	md;
@@ -67,7 +79,7 @@ t_token	**token_separate_by_pipe(t_token *token)
 			md.iter->prev->next = NULL;
 			md.iter = md.iter->next;
 			if (md.temp)
-				token_smash(&md.temp);
+				token_dispose(&md.temp);
 			if (md.temp_root && md.temp_root->type == PIPE)
 				return (NULL);
 			md.i++;

@@ -1,5 +1,16 @@
-#include "minishell.h"
-#include <stdlib.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/21 21:10:30 by ahmsanli          #+#    #+#             */
+/*   Updated: 2024/08/07 18:34:42 by ahmsanli         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../inc/minishell.h"
 
 static int	ft_count_words(char const *str, char c)
 {
@@ -20,7 +31,7 @@ static int	ft_count_words(char const *str, char c)
 	return (count);
 }
 
-static char	**ft_smash_arr(char **arr, int i)
+static char	**ft_dispose_arr(char **arr, int i)
 {
 	while (i >= 0)
 	{
@@ -50,7 +61,7 @@ static char	**ft_fill_arr(char **arr, char const *str, char c)
 		{
 			arr[arr_i] = ft_substr(str, j, i - j);
 			if (arr[arr_i] == NULL)
-				return (ft_smash_arr(arr, arr_i));
+				return (ft_dispose_arr(arr, arr_i));
 			arr_i++;
 		}
 	}

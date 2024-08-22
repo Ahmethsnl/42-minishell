@@ -110,7 +110,7 @@ extern HIST_ENTRY *copy_history_entry (HIST_ENTRY *);
 extern histdata_t free_history_entry (HIST_ENTRY *);
 
 /* Make the history entry at WHICH have LINE and DATA.  This returns
-   the old entry so you can smash of the data.  In the case of an
+   the old entry so you can dispose of the data.  In the case of an
    invalid WHICH, a NULL pointer is returned. */
 extern HIST_ENTRY *replace_history_entry (int, const char *, histdata_t);
 

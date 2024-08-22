@@ -1,71 +1,57 @@
-CC					= clang
-CFLAGS			=
-PROGRAM			= minishell
-SRC_DIR			= src
-CMD_DIR			= cmd
-BIN_DIR			= bin
-INC_DIR			= -Iinc -I./lib/readline/include
-OBJ_DIR			= build
-NAME				= $(BIN_DIR)/$(PROGRAM)
-SRCS				= src/meta.c src/quote.c src/separator.c src/token.c \
-	src/token_add.c src/token_append.c src/token_append_util.c src/token_util.c \
-	src/util.c src/dollar.c src/dollar_util.c src/dollar_handle.c \
-	src/assign_token_types.c src/lexer.c \
-	src/ft_split.c \
-	src/syntax_check_util.c src/syntax_check.c \
-	src/signal.c src/smash.c src/print_util.c src/token_util2.c  \
-	src/util2.c src/util3.c src/quote_util.c
+NAME = minishell
+OBJ_DIR = build
+SRC_DIR = src
+CC = gcc
+CFLAGS = -g -Wall -Wextra -Werror #-fsanitize=address
+M_SRC = $(SRC_DIR)/meta.c $(SRC_DIR)/quote.c $(SRC_DIR)/separator.c $(SRC_DIR)/token.c \
+	$(SRC_DIR)/token_add.c $(SRC_DIR)/token_append.c $(SRC_DIR)/token_append_util.c $(SRC_DIR)/token_util.c \
+	$(SRC_DIR)/util.c $(SRC_DIR)/dollar.c $(SRC_DIR)/dollar_util.c $(SRC_DIR)/dollar_handle.c \
+	$(SRC_DIR)/assign_token_types.c $(SRC_DIR)/lexer.c $(SRC_DIR)/exec.c $(SRC_DIR)/path.c \
+	$(SRC_DIR)/ft_split.c $(SRC_DIR)/echo.c $(SRC_DIR)/env_util.c $(SRC_DIR)/export.c  $(SRC_DIR)/exit.c \
+	$(SRC_DIR)/built_in.c $(SRC_DIR)/cd.c $(SRC_DIR)/syntax_check_util.c $(SRC_DIR)/syntax_check.c \
+	$(SRC_DIR)/signal.c $(SRC_DIR)/dispose.c $(SRC_DIR)/print_util.c $(SRC_DIR)/token_util2.c\
+	$(SRC_DIR)/util2.c $(SRC_DIR)/util3.c $(SRC_DIR)/quote_util.c $(SRC_DIR)/exec_single_cmd.c $(SRC_DIR)/pwd.c \
+	$(SRC_DIR)/env.c $(SRC_DIR)/exec_utils.c $(SRC_DIR)/built_in_utils.c $(SRC_DIR)/error.c cmd/minishell.c \
+	$(SRC_DIR)/unset.c $(SRC_DIR)/redirect.c $(SRC_DIR)/redirect2.c
 
-OBJS					= $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
-CMD						= $(CMD_DIR)/$(PROGRAM).c
-RM						= rm -rf
-RLFLAGS				= -L./lib/readline/lib -I./lib/readline/include/readline -lreadline
-DIR						= $(shell echo $(PWD))
-READLINE			= ./lib/readline/lib/libreadline.a
+INC_DIR = -I./inc -I./lib/readline/include
+SRC = $(M_SRC)
+OBJ = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
+READLINE = -L./lib/readline/lib -I./lib/readline/include/readline -lreadline 
+DIR = $(shell echo $(PWD))
+RM = rm -rf
+RL = ./lib/readline/lib/libreadline.a
 
-w = 1
-ifeq '$(w)' '1'
-CFLAGS += -Wextra -Werror -Wall
-endif
+all: $(NAME)
 
-debug = 1
-ifeq '$(debug)' '1'
-CFLAGS += -g
-endif
+$(NAME): $(RL) $(OBJ)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(READLINE) $(INC_DIR)
+	@echo "Minishell compiled"
 
-asan = 0
-ifeq '$(asan)' '1'
-CFLAGS += -fsanitize=address
-endif
-
-all: $(READLINE)
-	@mkdir -p bin
-	@$(MAKE) $(NAME)
-
-$(READLINE):
+$(RL):
+	@echo "Downloading readline"
 	@curl -O https://ftp.gnu.org/gnu/readline/readline-8.2-rc1.tar.gz
 	@tar -xvf readline-8.2-rc1.tar.gz
 	@$(RM) readline-8.2-rc1.tar.gz
 	@cd readline-8.2-rc1 && ./configure --prefix=$(DIR)/lib/readline && make && make install
 	@$(RM) readline-8.2-rc1
-
-$(NAME): $(CMD) $(OBJS)
-	@mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS) $(RLFLAGS) $(INC_DIR) $(CMD) $(OBJS) -o $(NAME)
+	@echo "Readline installed"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
-	$(CC) $(CFLAGS) $(INC_DIR) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
+
+ready: all
+	@./$(NAME)
+
+RLclean:
+	@$(RM) lib/readline
+	@echo "Readline removed"
 
 clean:
-	$(RM) $(OBJS)
+	@$(RM) $(OBJ_DIR)/*.o
 
 fclean: clean
-	$(RM) $(NAME) & wait
+	@$(RM) $(NAME)
 
-r : ./bin/minishell
-
-re: fclean
-	$(MAKE) all
-
-.PHONY: all clean fclean re set
+re: fclean all

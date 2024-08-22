@@ -1,5 +1,16 @@
-#include "minishell.h"
-#include <stdlib.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   token_util.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/21 21:11:16 by ahmsanli          #+#    #+#             */
+/*   Updated: 2024/08/07 19:58:57 by ahmsanli         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../inc/minishell.h"
 
 t_token	*token_get_root(t_token *node)
 {
@@ -52,5 +63,5 @@ void	token_old_del(t_token **temp, t_token *root)
 	if ((*temp)->next)
 		(*temp)->next->prev = (*temp)->prev;
 	*temp = (*temp)->next;
-	token_smash(&old_node);
+	token_dispose(&old_node);
 }

@@ -1,6 +1,16 @@
-#include "minishell.h"
-#include "stdlib.h"
-#include "unistd.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   token_append.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/21 21:11:11 by ahmsanli          #+#    #+#             */
+/*   Updated: 2024/08/07 18:21:32 by ahmsanli         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../inc/minishell.h"
 
 bool	token_append_meta(t_token **token)
 {

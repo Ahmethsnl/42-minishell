@@ -1086,7 +1086,7 @@ v.  Changes to the shared library construction scripts to deal with Windows
 w.  Fixed the redisplay code to avoid core dumps resulting from a poorly-timed
     SIGWINCH.
 
-x.  Fixed the non-incremental search code in vi mode to smash of any current
+x.  Fixed the non-incremental search code in vi mode to dispose of any current
     undo list when copying a line from the history into the current editing
     buffer.
 

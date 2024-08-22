@@ -1,13 +1,20 @@
-#include "minishell.h"
-#include <stdio.h>
-#include "readline/history.h"
-#include "readline/readline.h"
-#include <stdlib.h>
-#include <unistd.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kkarakus <kkarakus@student.42istanbul.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/07 19:55:09 by ahmsanli          #+#    #+#             */
+/*   Updated: 2024/08/21 17:58:28 by kkarakus         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../inc/minishell.h"
 
 int	g_sig = 0;
 
-static void	smash_env_idx(char **copy_env, int i)
+static void	dispose_env_idx(char **copy_env, int i)
 {
 	if (!copy_env)
 		return ;
@@ -35,7 +42,7 @@ char	**copy_env(char **env)
 	{
 		env_copy[i] = ft_strdup(env[i]);
 		if (!env_copy[i])
-			return (smash_env_idx(env_copy, i), NULL);
+			return (dispose_env_idx(env_copy, i), NULL);
 		i++;
 	}
 	env_copy[i] = NULL;
@@ -51,7 +58,7 @@ static t_state	*state_init(char **argv, char **env)
 		return (NULL);
 	state->env = copy_env(env);
 	if (!state->env)
-		return (state_smash(&state), NULL);
+		return (state_dispose(&state), NULL);
 	state->argv = argv;
 	state->token_arr = NULL;
 	state->prompt = NULL;
@@ -59,6 +66,20 @@ static t_state	*state_init(char **argv, char **env)
 	state->cmd_ct = 0;
 	state->err = 0;
 	return (state);
+}
+
+
+void	ft_free_old_data(t_token *root)
+{
+	t_token	*tmp;
+	
+	while (root)
+	{
+		tmp = root;
+		root = root->next;
+		free(tmp->data);
+		free(tmp);
+	}
 }
 
 static void	shell_routine(t_state *state)
@@ -73,7 +94,7 @@ static void	shell_routine(t_state *state)
 		if (state->err)
 		{
 			print_syntax_err(state->err, state);
-			smash_prompt(state);
+			dispose_prompt(state);
 			continue ;
 		}
 		state->err = SUCCESS;
@@ -83,7 +104,7 @@ static void	shell_routine(t_state *state)
 			free(state->prompt);
 			continue ;
 		}
-		//run_executor(state);
+		exec_start(state);
 	}
 }
 
@@ -96,5 +117,5 @@ int	main(int argc, char **argv, char **env)
 	if (!state)
 		return (argc);
 	shell_routine(state);
-	return (state_smash(&state), state->status);
+	return (state_dispose(&state), state->status);
 }

@@ -1,5 +1,16 @@
-#include "minishell.h"
-#include <stdlib.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   token_util2.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kkarakus <kkarakus@student.42istanbul.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/21 21:11:19 by ahmsanli          #+#    #+#             */
+/*   Updated: 2024/08/21 18:08:18 by kkarakus         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../inc/minishell.h"
 
 int	token_count_pipe(t_token *token)
 {
@@ -52,40 +63,41 @@ int	token_count_args(t_token *token)
 	return (len);
 }
 
-// static int	set_when_built_in(t_token *token, t_state *state, t_cmd *cmd,
-// int **pipe_fds)
-// {
-// 	if (exec_built_in(state, token, cmd, pipe_fds) != SUCCESS)
-// 	{
-// 		token->data = NULL;
-// 		return (cmd_smash(cmd), FAILURE);
-// 	}
-// 	token->data = NULL;
-// 	return (cmd_smash(cmd), SUCCESS);
-// }
+static int	set_when_built_in(t_token *token, t_state *state, t_cmd *cmd,
+int **pipe_fds)
+{
+	if (which_command_built_in(state, token, cmd, pipe_fds) != SUCCESS)
+	{
+		token->data = NULL;
+		return (cmd_dispose(cmd), FAILURE);
+	}
+	free(token->data);
+	token->data = NULL;
+	return (cmd_dispose(cmd), SUCCESS);
+}
 
-// int	set_cmd_arg_and_path(t_token *token, t_state *state, t_cmd *cmd,
-// int **pipe_fds)
-// {
-// 	char	**argv;
-// 	char	*cmd_path;
+int	set_cmd_arg_and_path(t_token *token, t_state *state, t_cmd *cmd,
+int **pipe_fds)
+{
+	char	**argv;
+	char	*cmd_path;
 
-// 	if (!token || !cmd || !state)
-// 		return (FAILURE);
-// 	if (token_is_built_in(token))
-// 		return (set_when_built_in(token, state, cmd, pipe_fds));
-// 	cmd_path = get_cmd_path(token, state);
-// 	if (!cmd_path)
-// 	{
-// 		if (state->err != HANDLED)
-// 			return (print_exec_err(state, token, 127, ERR_CMD_NOT_FOUND),
-// 				FAILURE);
-// 		return (FAILURE);
-// 	}
-// 	cmd->cmd = cmd_path;
-// 	argv = token_to_arg(token, cmd_path);
-// 	if (!argv)
-// 		return (free(cmd_path), FAILURE);
-// 	cmd->argv = argv;
-// 	return (SUCCESS);
-// }
+	if (!token || !cmd || !state)
+		return (FAILURE);
+	if (token_is_built_in(token))
+		return (set_when_built_in(token, state, cmd, pipe_fds));
+	cmd_path = get_cmd_path(token, state);
+	if (!cmd_path)
+	{
+		if (state->err != HANDLED)
+			return (print_execute_err(state, token, 127, ERR_CMD_NOT_FOUND),
+				FAILURE);
+		return (FAILURE);
+	}
+	cmd->cmd = cmd_path;
+	argv = token_to_arg(token, cmd_path);
+	if (!argv)
+		return (free(cmd_path), FAILURE);
+	cmd->argv = argv;
+	return (SUCCESS);
+}

@@ -1,6 +1,16 @@
-#include "minishell.h"
-#include <stdlib.h>
-#include <string.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   separator.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kkarakus <kkarakus@student.42istanbul.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/21 21:10:55 by ahmsanli          #+#    #+#             */
+/*   Updated: 2024/08/22 12:38:35 by kkarakus         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../inc/minishell.h"
 
 t_token	*separate_prompt_by_space(char *prompt)
 {
@@ -36,10 +46,10 @@ int	create_separated_node(t_token **root, char *prompt, int start, int i)
 
 	data = ft_substr(prompt, start, i - start);
 	if (!data)
-		return (token_smash(root), 1);
+		return (token_dispose(root), 1);
 	new = token_new(data, NONE);
 	if (!new)
-		return (free(data), token_smash(root), 1);
+		return (free(data), token_dispose(root), 1);
 	*root = token_add_last(*root, new);
 	if (!*root)
 		return (free(data), free(new), 1);
@@ -76,7 +86,7 @@ void	token_insert_dollar_nodes(t_token **token)
 		}
 		else
 			*token = temp->next;
-		token_smash(&temp);
+		token_dispose(&temp);
 		return ;
 	}
 	token_insertion(token, temp, sub_nodes);
@@ -101,5 +111,5 @@ void	token_insertion(t_token **token, t_token *temp, \
 		sub_last->next = temp->next;
 	if (temp->next)
 		temp->next->prev = sub_last;
-	token_smash(&temp);
+	token_dispose(&temp);
 }

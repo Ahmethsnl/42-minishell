@@ -1,5 +1,16 @@
-#include "minishell.h"
-#include <stdlib.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lexer.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kkarakus <kkarakus@student.42istanbul.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/21 21:10:33 by ahmsanli          #+#    #+#             */
+/*   Updated: 2024/08/21 17:56:35 by kkarakus         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../inc/minishell.h"
 
 bool	str_is_all_space(const char *str)
 {
@@ -41,7 +52,7 @@ t_token	**run_lexer(t_state *state)
 	if (!root)
 		return (NULL);
 	if (token_is_all_space(root))
-		return (token_smash_all(&root), state_smash_single(&state), NULL);
+		return (token_dispose_all(&root), state_dispose_single(&state), NULL);
 	root = extract_meta_chars(&root);
 	handle_dollar(&root, state);
 	handle_unnecessary_quotes(root);

@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 19:32:22 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/07 19:33:45 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/23 15:06:37 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,46 @@ int	cmd_init(t_cmd *cmd, int arr_len)
 		i++;
 	}
 	return (SUCCESS);
+}
+
+int	**pipe_fd_dispose_idx(int **pipe_fd, int i)
+{
+	if (!pipe_fd)
+		return (NULL);
+	if (i < 1)
+		return (free(pipe_fd), NULL);
+	i--;
+	while (i >= 0)
+	{
+		free(pipe_fd[i]);
+		i--;
+	}
+	free(pipe_fd);
+	return (NULL);
+}
+
+int	**pipe_fd_init(int pipe_count)
+{
+	int	**pipe_fd;
+	int	i;
+
+	pipe_fd = (int **) malloc(sizeof(int *) * pipe_count);
+	if (!pipe_fd)
+		return (NULL);
+	i = 0;
+	while (i < pipe_count)
+	{
+		pipe_fd[i] = (int *) malloc(sizeof(int) * 2);
+		if (!pipe_fd[i])
+			return (pipe_fd_dispose_idx(pipe_fd, i));
+		i++;
+	}
+	i = 0;
+	while (i < pipe_count)
+	{
+		if (pipe(pipe_fd[i]) == -1)
+			return (pipe_fd_dispose_idx(pipe_fd, pipe_count - 1), NULL);
+		i++;
+	}
+	return (pipe_fd);
 }

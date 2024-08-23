@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:11:38 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/22 18:06:39 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/23 16:34:51 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,11 @@
 # define COLOR_GREEN "\e[0;32m"
 # define COLOR_RESET "\e[0m"
 
-# define PROMPT "minishell$ "
+// # define COLOR_RESET "\033[0;31m"
+// # define COLOR_RED "\033[0;32m"
+// # define COLOR_GREEN "\033[0m"
+
+# define PROMPT "minibash-runner$ "
 
 extern int			g_sig;
 
@@ -308,9 +312,15 @@ int					handle_red_input(t_token *token, t_cmd *cmd, \
 int					handle_red_heredoc(t_token *token, t_cmd *cmd, int i);
 int					handle_red_output(t_token *token, t_cmd *cmd, t_state *state);
 int					handle_red_append(t_token *token, t_cmd *cmd, t_state *state);
-int					set_red(t_token *token, t_cmd *cmd, t_state *state);
+int					set_other_redirect(t_token *token, t_cmd *cmd, t_state *state);
 int					handle_fds(t_token *token, t_cmd *cmd, t_state *state, \
 					bool has_last_heredoc);
 int					set_heredoc(t_token *token, t_cmd *cmd, int i);
+int					**pipe_fd_init(int pipe_count);
+int					**pipe_fd_dispose_idx(int **pipe_fd, int i);
+int					fork_init_exec_child_part(t_state *state, t_cmd *cmd, pid_t *pids,
+					int **fd);
+int					fork_init(t_state *state, t_cmd *cmd, int **fd, int arr_len);
+void				handle_child_process(int **fd, t_state *state, t_cmd *cmd, int i);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:25:24 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/22 14:12:55 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/23 16:40:28 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ int	run_executor(t_state *state)
 {
 	int			arr_len;
 	t_cmd		command;
-	// int			**pipe_fds;
+	int			**pipe_fd;
 
+	pipe_fd = NULL;
 	if (!state && !state->token_arr)
 		return (FAILURE);
 	arr_len = token_arr_len(state->token_arr);
@@ -34,8 +35,12 @@ int	run_executor(t_state *state)
 		return (FAILURE);
 	if (arr_len == 1)
 		return (exec_single_command(state->token_arr[0], state, &command));
-	// pipe_fds = pipe_fds_init(arr_len - 1);
-	// if (!pipe_fds)
-	// 	return (free(cmd.heredoc), FAILURE);
-	return (SUCCESS);
+	pipe_fd = pipe_fd_init(arr_len - 1);
+	if (!pipe_fd)
+		return (free(command.heredoc), FAILURE);
+	if (fork_init(state, &command, pipe_fd, arr_len) != SUCCESS)
+		return (pipe_fd_dispose_idx(pipe_fd, arr_len - 1), free(command.heredoc),
+			FAILURE);
+	return (pipe_fd_dispose_idx(pipe_fd, arr_len - 1), free(command.heredoc),
+		SUCCESS);
 }

@@ -6,13 +6,13 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:26:43 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/22 15:59:35 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/23 16:29:39 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-int	set_red(t_token *token, t_cmd *cmd, t_state *state)
+int	set_other_redirect(t_token *token, t_cmd *cmd, t_state *state)
 {
 	bool		has_last_heredoc;
 	t_token		*temp;

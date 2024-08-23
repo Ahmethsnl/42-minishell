@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 15:49:06 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/22 17:54:17 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/23 16:29:35 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	exec_single_command_prepare(t_token *token, t_state *state, t_cmd *cmd)
 {
 	if (set_heredoc(token, cmd, 0) != SUCCESS)
 		return (FAILURE);
-	if (set_red(token, cmd, state) != SUCCESS)
+	if (set_other_redirect(token, cmd, state) != SUCCESS)
 		return (FAILURE);
 	if (token_has_cmd(token) == false)
 		return (SUCCESS);

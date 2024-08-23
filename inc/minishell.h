@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:11:38 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/23 16:34:51 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/23 17:45:46 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@
 // # define COLOR_RED "\033[0;32m"
 // # define COLOR_GREEN "\033[0m"
 
-# define PROMPT "minibash-runner$ "
+# define PROMPT "minishell$ "
 
 extern int			g_sig;
 

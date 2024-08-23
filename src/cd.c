@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 18:11:08 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/22 18:09:37 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/23 18:04:46 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	env_set_oldpwd(t_state *state, char *path)
 		return (FAILURE);
 	if (!state)
 		return (FAILURE);
-	if (env_set_value(state, path) != SUCCESS)
+	if (env_set_value(state, oldpwd) != SUCCESS)
 		return (free(oldpwd), FAILURE);
 	free(oldpwd);
 	return (SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:19:47 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/15 19:11:39 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/23 17:15:11 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ int	run_echo(t_state *state, t_token *token, t_cmd *cmd)
 	buffer = merge_args(token, n);
 	if (!buffer)
 		return (FAILURE);
-	dprint(cmd->bout, buffer);
+	dprint(cmd->out, buffer);
 	state->status = 0;
 	return (free(buffer), SUCCESS);
 }

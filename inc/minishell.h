@@ -29,8 +29,8 @@
 # include <stdlib.h>
 # include <sys/ioctl.h>
 # include <termios.h>
-# include <readline/readline.h>
-# include <readline/history.h>
+# include <../lib/readline/readline.h>
+# include <../lib/readline/history.h>
 
 # define PATH_MAX 4096
 

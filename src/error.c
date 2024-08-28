@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkarakus <kkarakus@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:06:56 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/28 15:13:14 by kkarakus         ###   ########.fr       */
+/*   Updated: 2024/08/28 18:17:11 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static int	print_exec_err_with_prefix(const t_token *token, int err)
 		eprint(token->data);
 		eprint(": ");
 	}
-	printf("err: %d\n", err);
 	if (err == ENO_OTHER)
 		return (FAILURE);
 	else if (err == ENOENT)

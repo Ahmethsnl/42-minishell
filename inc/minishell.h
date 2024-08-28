@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:11:38 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/28 15:42:17 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/28 19:11:50 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@
 # define ESTR_CANT_CHANGE_DIR "cannot change directory"
 # define ESTR_INVALID_ARG "invalid argument"
 # define ESTR_NOT_A_VALID_IDENTIFIER "not a valid identifier"
-# define ESTR_NO_SUCH_FILE_OR_DIR "no such file or directory"
+# define ESTR_NO_SUCH_FILE_OR_DIR "No such file or directory"
 # define ESTR_NUMERIC_ARG_REQUIRED "numeric argument required"
 # define ESTR_TOO_MANY_ARG "too many arguments"
 # define ESTR_PERMISSION_DENIED "permission denied"
@@ -80,14 +80,14 @@
 # define ESTR_NOT_VALID_IN_THIS_CTX "not valid in this context"
 # define ESTR_SYN_UNKNOWN_ERR "unknown syntax error"
 # define ESTR_SYN_ZERO_PIPE "syntax error near unexpected token `newline'"
-# define ESTR_SYN_EMPTY_AFTER "syntax error near unexpected token `newline'"
+# define ESTR_SYN_EMPTY_AFTER "syntax error or near unexpected token `newline'"
 # define ESTR_SYN_MISS_QUOTE "unexpected quote `'', `\"'"
 
-# define COLOR_RED "\e[0;31m"
-# define COLOR_GREEN "\e[0;32m"
+# define COLOR_RED "\e[0;32m"
+# define COLOR_GREEN "\e[0;31m"
 # define COLOR_RESET "\e[0m"
 
-# define PROMPT "minishell$ "
+# define PROMPT "🤙kayisi_bash-4.4$👌 "
 
 extern int			g_sig;
 

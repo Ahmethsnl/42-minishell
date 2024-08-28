@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmsanli <ahmsanli@student.42istanbul.com. +#+  +:+       +#+        */
+/*   By: kkarakus <kkarakus@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 14:18:37 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/21 14:18:37 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:23:52 by kkarakus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ static bool	validate_unset_arg(t_state *state, t_token *arg)
 	while (arg)
 	{
 		if (!is_al_underscore(arg->data[0]))
-			return (print_execute_err(state, arg, 1, ERRP_NOT_A_VALID_IDENTIFIER),
+			return (print_execute_err(state, arg, 1, \
+					ERRP_NOT_A_VALID_IDENTIFIER),
 				false);
 		i = 0;
 		while (arg->data[i])

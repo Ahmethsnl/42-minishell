@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: kkarakus <kkarakus@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:06:56 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/22 18:10:09 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:13:14 by kkarakus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int	print_execute_err(t_state *state, const t_token *token, int status, int err)
 	state->status = status;
 	if (print_exec_err_with_prefix(token, err) != SUCCESS)
 		return (FAILURE);
+	else if (err == ERR_FORK_ERROR)
+		eprintln("fork: Resource temporarily unavailable");
 	else if (err == ERR_NUMERIC_ARG_REQUIRED)
 		eprintln(ESTR_NUMERIC_ARG_REQUIRED);
 	else if (err == ERR_TOO_MANY_ARG)

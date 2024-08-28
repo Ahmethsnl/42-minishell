@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fork.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: kkarakus <kkarakus@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 15:12:54 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/23 16:18:56 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:27:30 by kkarakus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,12 @@ int	fork_init(t_state *state, t_cmd *cmd, int **fd, int arr_len)
 {
 	pid_t	*pids;
 	int		i;
+	t_token	*token;
 
 	if (!fd || arr_len < 0)
 		return (FAILURE);
+	if (arr_len > 150)
+		return (print_execute_err(state, token, 1, ERR_FORK_ERROR), FAILURE);
 	pids = (int *) malloc(sizeof(int) * (arr_len + 1));
 	if (!pids)
 		return (FAILURE);

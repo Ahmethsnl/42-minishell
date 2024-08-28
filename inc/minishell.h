@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: kkarakus <kkarakus@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:11:38 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/23 17:45:46 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:21:53 by kkarakus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@
 # define ERRP_NOT_A_VALID_IDENTIFIER 10004
 # define ERR_NOT_VALID_IN_THIS_CTX 10005
 # define ERR_OLDPWD_NOT_SET 10006
+# define ERR_FORK_ERROR 10007
 
 # define ENDL "\n"
 # define ESTR_UNKNOWN "unknown error"
@@ -85,10 +86,6 @@
 # define COLOR_RED "\e[0;31m"
 # define COLOR_GREEN "\e[0;32m"
 # define COLOR_RESET "\e[0m"
-
-// # define COLOR_RESET "\033[0;31m"
-// # define COLOR_RED "\033[0;32m"
-// # define COLOR_GREEN "\033[0m"
 
 # define PROMPT "minishell$ "
 

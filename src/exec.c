@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: kkarakus <kkarakus@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:25:24 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/23 17:31:05 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:29:08 by kkarakus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ int	run_executor(t_state *state)
 	if (!pipe_fd)
 		return (free(command.heredoc), FAILURE);
 	if (fork_init(state, &command, pipe_fd, arr_len) != SUCCESS)
-		return (pipe_fd_dispose_idx(pipe_fd, arr_len - 1), free(command.heredoc),
+		return (pipe_fd_dispose_idx(pipe_fd, arr_len - 1), \
+				free(command.heredoc),
 			FAILURE);
 	return (pipe_fd_dispose_idx(pipe_fd, arr_len - 1), free(command.heredoc),
 		SUCCESS);

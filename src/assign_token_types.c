@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   assign_token_types.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: kkarakus <kkarakus@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:10:09 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/22 16:36:57 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:30:07 by kkarakus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,11 @@ static void	assign_token_types_file(t_token *token)
 {
 	t_token	*temp;
 
-	if (!token)
-		return ;
 	temp = token;
 	while (temp)
 	{
-		if (temp->type == RED_INPUT || temp->type == RED_OUTPUT || temp->type == RED_APPEND)
+		if (temp->type == RED_INPUT || temp->type == RED_OUTPUT \
+			|| temp->type == RED_APPEND)
 		{
 			temp = temp->next;
 			if (temp)

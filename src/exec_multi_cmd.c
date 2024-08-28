@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_multi_cmd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: kkarakus <kkarakus@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 16:14:37 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/23 16:58:51 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:28:55 by kkarakus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void	close_other_fds(int i, int **fd, int arr_len)
 		j++;
 	}
 }
+
 static void	set_fd_in(int **fd, t_cmd *cmd, int i)
 {
 	if (cmd->in == NAFD)

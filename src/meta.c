@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   meta.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: kkarakus <kkarakus@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:10:35 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/22 16:33:33 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:26:26 by kkarakus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ t_token	*extract_meta_chars(t_token **root)
 
 bool	is_meta(t_token_type type)
 {
-	return (type == PIPE || type == RED_INPUT || type == RED_HEREDOC || type == RED_OUTPUT
+	return (type == PIPE || type == RED_INPUT || \
+			type == RED_HEREDOC || type == RED_OUTPUT
 		|| type == RED_APPEND);
 }
 

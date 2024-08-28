@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_single_cmd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: kkarakus <kkarakus@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 15:49:06 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/23 16:29:35 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:28:21 by kkarakus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int	exec_single_cmd_with_fork(t_cmd *cmd, t_state *state)
 	g_sig = AFTER_CMD;
 	return (SUCCESS);
 }
-
 
 int	exec_single_command_prepare(t_token *token, t_state *state, t_cmd *cmd)
 {

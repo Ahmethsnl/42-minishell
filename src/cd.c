@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: kkarakus <kkarakus@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 18:11:08 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/23 18:04:46 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:29:18 by kkarakus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	env_set_oldpwd(t_state *state, char *path)
 {
 	char	*oldpwd;
-	
+
 	oldpwd = ft_strjoin("OLDPWD=", path, 0);
 	if (!oldpwd)
 		return (FAILURE);

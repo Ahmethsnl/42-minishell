@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: kkarakus <kkarakus@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:17:30 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/23 17:55:40 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:26:11 by kkarakus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int	handle_red_input(t_token *token, t_cmd *cmd, \
 	if (!temp && !temp->next)
 		return (FAILURE);
 	if (access(temp->data, F_OK) == -1)
-		return (print_execute_err(state, token->next, 1, ERR_NO_SUCH_FILE_OR_DIR));
+		return (print_execute_err(state, token->next, \
+			1, ERR_NO_SUCH_FILE_OR_DIR));
 	if (access(temp->data, R_OK) == -1)
 		return (print_execute_err(state, token->next, 101, EACCES));
 	if (has_last_heredoc)

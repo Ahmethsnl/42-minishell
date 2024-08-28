@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: kkarakus <kkarakus@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:26:43 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/23 17:03:08 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:24:48 by kkarakus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ int	handle_fds(t_token *token, t_cmd *cmd, t_state *state, \
 	{
 		if (token->type == RED_INPUT)
 		{
-			if (handle_red_input(token, cmd, has_last_heredoc, state) != SUCCESS)
+			if (handle_red_input(token, cmd, has_last_heredoc, \
+					state) != SUCCESS)
 				return (FAILURE);
 		}
 		else if (token->type == RED_OUTPUT)

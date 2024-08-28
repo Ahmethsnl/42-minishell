@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkarakus <kkarakus@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:11:38 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/28 15:21:53 by kkarakus         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:42:17 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -307,17 +307,22 @@ char				*get_cmd_path(t_token *token, t_state *state);
 int					handle_red_input(t_token *token, t_cmd *cmd, \
 					bool has_last_heredoc, t_state *state);
 int					handle_red_heredoc(t_token *token, t_cmd *cmd, int i);
-int					handle_red_output(t_token *token, t_cmd *cmd, t_state *state);
-int					handle_red_append(t_token *token, t_cmd *cmd, t_state *state);
-int					set_other_redirect(t_token *token, t_cmd *cmd, t_state *state);
+int					handle_red_output(t_token *token, \
+					t_cmd *cmd, t_state *state);
+int					handle_red_append(t_token *token, \
+					t_cmd *cmd, t_state *state);
+int					set_other_redirect(t_token *token, t_cmd *cmd, \
+					t_state *state);
 int					handle_fds(t_token *token, t_cmd *cmd, t_state *state, \
 					bool has_last_heredoc);
 int					set_heredoc(t_token *token, t_cmd *cmd, int i);
 int					**pipe_fd_init(int pipe_count);
 int					**pipe_fd_dispose_idx(int **pipe_fd, int i);
-int					fork_init_exec_child_part(t_state *state, t_cmd *cmd, pid_t *pids,
-					int **fd);
-int					fork_init(t_state *state, t_cmd *cmd, int **fd, int arr_len);
-void				handle_child_process(int **fd, t_state *state, t_cmd *cmd, int i);
+int					fork_init_exec_child_part(t_state *state, t_cmd *cmd, \
+					pid_t *pids, int **fd);
+int					fork_init(t_state *state, t_cmd *cmd, \
+					int **fd, int arr_len);
+void				handle_child_process(int **fd, t_state *state, \
+					t_cmd *cmd, int i);
 
 #endif

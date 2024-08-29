@@ -66,7 +66,8 @@ int	run_cd(t_state *state, t_token *token)
 	if (home_set(state, home, token) != SUCCESS)
 		return (free(old_path), FAILURE);
 	if (chdir(token->next->data) == -1)
-		return (free(old_path), print_execute_err(state, token, 1, ERR_NO_SUCH_FILE_OR_DIR));
+		return (free(old_path), \
+			print_execute_err(state, token, 1, ERR_NO_SUCH_FILE_OR_DIR));
 	if (env_set_pwd(state) != SUCCESS)
 		return (FAILURE);
 	if (old_path_util(state, old_path) != SUCCESS)

@@ -45,9 +45,7 @@ int	syntax_pipe(t_state *shell, t_syntax *syntax, int *i)
 		syntax->zero_pipe = 1;
 	else
 		return (2);
-	if (!syntax->simplex)
-		syntax->simplex = 3;
-	else
+	if (syntax->simplex)
 		return (2);
 	++(*i);
 	return (0);
@@ -56,8 +54,6 @@ int	syntax_pipe(t_state *shell, t_syntax *syntax, int *i)
 int	syntax_sarrow(t_syntax *syntax, int *i)
 {
 	if (!syntax->simplex)
-		syntax->simplex = 1;
-	else if (syntax->simplex == 3)
 		syntax->simplex = 1;
 	else
 		return (2);
@@ -69,10 +65,6 @@ int	syntax_darrow(t_syntax *syntax, int *i)
 {
 	if (!syntax->simplex)
 		syntax->simplex = 2;
-	else if (syntax->simplex == 3)
-	{
-		syntax->simplex = 2;
-	}
 	else
 		return (2);
 	*i += 2;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fork.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkarakus <kkarakus@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 15:12:54 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/28 15:27:30 by kkarakus         ###   ########.fr       */
+/*   Updated: 2024/09/06 17:05:43 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,14 @@ int	fork_init_exec_child_part(t_state *state, t_cmd *cmd, pid_t *pids,
 	pid_t	pid;
 	int		i;
 
-	i = 0;
+	i = -1;
 	arr_len = token_arr_len(state->token_arr);
-	while (i < arr_len)
-	{
+	while (++i < arr_len)
 		if (set_heredoc(state->token_arr[i], cmd, i) != SUCCESS)
 			return (FAILURE);
+	i = 0;
+	while (i < arr_len)
+	{
 		g_sig = IN_CMD;
 		pid = fork();
 		if (pid == -1)

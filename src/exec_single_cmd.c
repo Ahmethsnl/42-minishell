@@ -6,7 +6,7 @@
 /*   By: kkarakus <kkarakus@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 15:49:06 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/21 18:01:19 by kkarakus         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:28:21 by kkarakus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,11 @@ int	exec_single_cmd_with_fork(t_cmd *cmd, t_state *state)
 	return (SUCCESS);
 }
 
-
 int	exec_single_command_prepare(t_token *token, t_state *state, t_cmd *cmd)
 {
 	if (set_heredoc(token, cmd, 0) != SUCCESS)
 		return (FAILURE);
-	if (set_red(token, cmd, state) != SUCCESS)
+	if (set_other_redirect(token, cmd, state) != SUCCESS)
 		return (FAILURE);
 	if (token_has_cmd(token) == false)
 		return (SUCCESS);
@@ -70,7 +69,6 @@ int	exec_single_command_prepare(t_token *token, t_state *state, t_cmd *cmd)
 
 int	exec_single_command(t_token *token, t_state *state, t_cmd *command)
 {
-
 	if (!token || !state || !command)
 		return (FAILURE);
 	if (exec_single_command_prepare(token, state, command) == FAILURE)

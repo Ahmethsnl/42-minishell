@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkarakus <kkarakus@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:11:38 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/21 17:35:50 by kkarakus         ###   ########.fr       */
+/*   Updated: 2024/08/28 19:11:50 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@
 # define ERRP_NOT_A_VALID_IDENTIFIER 10004
 # define ERR_NOT_VALID_IN_THIS_CTX 10005
 # define ERR_OLDPWD_NOT_SET 10006
+# define ERR_FORK_ERROR 10007
 
 # define ENDL "\n"
 # define ESTR_UNKNOWN "unknown error"
@@ -70,7 +71,7 @@
 # define ESTR_CANT_CHANGE_DIR "cannot change directory"
 # define ESTR_INVALID_ARG "invalid argument"
 # define ESTR_NOT_A_VALID_IDENTIFIER "not a valid identifier"
-# define ESTR_NO_SUCH_FILE_OR_DIR "no such file or directory"
+# define ESTR_NO_SUCH_FILE_OR_DIR "No such file or directory"
 # define ESTR_NUMERIC_ARG_REQUIRED "numeric argument required"
 # define ESTR_TOO_MANY_ARG "too many arguments"
 # define ESTR_PERMISSION_DENIED "permission denied"
@@ -79,14 +80,14 @@
 # define ESTR_NOT_VALID_IN_THIS_CTX "not valid in this context"
 # define ESTR_SYN_UNKNOWN_ERR "unknown syntax error"
 # define ESTR_SYN_ZERO_PIPE "syntax error near unexpected token `newline'"
-# define ESTR_SYN_EMPTY_AFTER "syntax error near unexpected token `newline'"
+# define ESTR_SYN_EMPTY_AFTER "syntax error or near unexpected token `newline'"
 # define ESTR_SYN_MISS_QUOTE "unexpected quote `'', `\"'"
 
-# define COLOR_RED "\e[0;31m"
-# define COLOR_GREEN "\e[0;32m"
+# define COLOR_RED "\e[0;32m"
+# define COLOR_GREEN "\e[0;31m"
 # define COLOR_RESET "\e[0m"
 
-# define PROMPT "minishell$ "
+# define PROMPT "🤙kayisi_bash-4.4$👌 "
 
 extern int			g_sig;
 
@@ -104,12 +105,12 @@ typedef enum e_token_type
 	CMD,
 	ARG,
 	PIPE,
-	RED_L,
-	RED_LL,
-	RED_R,
-	RED_RR,
+	RED_INPUT,
+	RED_HEREDOC,
+	RED_OUTPUT,
+	RED_APPEND,
 	RED_FILE,
-	RED_HEREDOC
+	RED_HEREDOC_TYPE
 }					t_token_type;
 
 typedef struct s_token
@@ -168,7 +169,7 @@ int					ft_strcmp(char *s1, char *s2);
 char				*ft_strdup(const char *src);
 char				*ft_substr(char const *s, int start, int len);
 char				*ft_itoa(int n);
-char				*ft_strjoin(char const *s1, char const *s2, bool flag_free);
+char				*ft_strjoin(char const *s1, char const *s2, int flag_free);
 int					ft_atoi(const char *str);
 char				*ft_strchr(const char *s, int c);
 bool				is_al_underscore(char c);
@@ -303,14 +304,25 @@ void				cmd_dispose(t_cmd *cmd);
 char				*get_env_path_arr_as_str(char **env);
 char				*get_cmd_absolute_path(t_token *token, t_state *state);
 char				*get_cmd_path(t_token *token, t_state *state);
-int					handle_redl(t_token *token, t_cmd *cmd, \
+int					handle_red_input(t_token *token, t_cmd *cmd, \
 					bool has_last_heredoc, t_state *state);
-int					handle_redll(t_token *token, t_cmd *cmd, int i);
-int					handle_redr(t_token *token, t_cmd *cmd, t_state *state);
-int					handle_redrr(t_token *token, t_cmd *cmd, t_state *state);
-int					set_red(t_token *token, t_cmd *cmd, t_state *state);
+int					handle_red_heredoc(t_token *token, t_cmd *cmd, int i);
+int					handle_red_output(t_token *token, \
+					t_cmd *cmd, t_state *state);
+int					handle_red_append(t_token *token, \
+					t_cmd *cmd, t_state *state);
+int					set_other_redirect(t_token *token, t_cmd *cmd, \
+					t_state *state);
 int					handle_fds(t_token *token, t_cmd *cmd, t_state *state, \
 					bool has_last_heredoc);
 int					set_heredoc(t_token *token, t_cmd *cmd, int i);
+int					**pipe_fd_init(int pipe_count);
+int					**pipe_fd_dispose_idx(int **pipe_fd, int i);
+int					fork_init_exec_child_part(t_state *state, t_cmd *cmd, \
+					pid_t *pids, int **fd);
+int					fork_init(t_state *state, t_cmd *cmd, \
+					int **fd, int arr_len);
+void				handle_child_process(int **fd, t_state *state, \
+					t_cmd *cmd, int i);
 
 #endif

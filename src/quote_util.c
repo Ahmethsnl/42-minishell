@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quote_util.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkarakus <kkarakus@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:10:48 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/21 17:31:25 by kkarakus         ###   ########.fr       */
+/*   Updated: 2024/08/07 18:41:44 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkarakus <kkarakus@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 19:55:09 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/21 17:58:28 by kkarakus         ###   ########.fr       */
+/*   Updated: 2024/09/06 17:05:53 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,20 +66,6 @@ static t_state	*state_init(char **argv, char **env)
 	state->cmd_ct = 0;
 	state->err = 0;
 	return (state);
-}
-
-
-void	ft_free_old_data(t_token *root)
-{
-	t_token	*tmp;
-	
-	while (root)
-	{
-		tmp = root;
-		root = root->next;
-		free(tmp->data);
-		free(tmp);
-	}
 }
 
 static void	shell_routine(t_state *state)

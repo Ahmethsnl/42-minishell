@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   separator.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkarakus <kkarakus@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:10:55 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/22 12:38:35 by kkarakus         ###   ########.fr       */
+/*   Updated: 2024/08/22 15:43:34 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

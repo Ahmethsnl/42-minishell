@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dispose.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkarakus <kkarakus@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:10:14 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/21 17:52:29 by kkarakus         ###   ########.fr       */
+/*   Updated: 2024/08/28 19:17:36 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

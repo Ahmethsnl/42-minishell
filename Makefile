@@ -2,7 +2,6 @@ NAME = minishell
 OBJ_DIR = build
 SRC_DIR = src
 CC = gcc
-CFLAGS = -g -Wall -Wextra -Werror #-fsanitize=address
 M_SRC = $(SRC_DIR)/meta.c $(SRC_DIR)/quote.c $(SRC_DIR)/separator.c $(SRC_DIR)/token.c \
 	$(SRC_DIR)/token_add.c $(SRC_DIR)/token_append.c $(SRC_DIR)/token_append_util.c $(SRC_DIR)/token_util.c \
 	$(SRC_DIR)/util.c $(SRC_DIR)/dollar.c $(SRC_DIR)/dollar_util.c $(SRC_DIR)/dollar_handle.c \
@@ -12,9 +11,10 @@ M_SRC = $(SRC_DIR)/meta.c $(SRC_DIR)/quote.c $(SRC_DIR)/separator.c $(SRC_DIR)/t
 	$(SRC_DIR)/signal.c $(SRC_DIR)/dispose.c $(SRC_DIR)/print_util.c $(SRC_DIR)/token_util2.c\
 	$(SRC_DIR)/util2.c $(SRC_DIR)/util3.c $(SRC_DIR)/quote_util.c $(SRC_DIR)/exec_single_cmd.c $(SRC_DIR)/pwd.c \
 	$(SRC_DIR)/env.c $(SRC_DIR)/exec_utils.c $(SRC_DIR)/built_in_utils.c $(SRC_DIR)/error.c cmd/minishell.c \
-	$(SRC_DIR)/unset.c $(SRC_DIR)/redirect.c $(SRC_DIR)/redirect2.c
+	$(SRC_DIR)/unset.c $(SRC_DIR)/redirect.c $(SRC_DIR)/redirect2.c $(SRC_DIR)/fork.c $(SRC_DIR)/exec_multi_cmd.c
 
 INC_DIR = -I./inc -I./lib/readline/include
+CFLAGS = -g -Wall -Wextra -Werror $(INC_DIR)
 SRC = $(M_SRC)
 OBJ = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
 READLINE = -L./lib/readline/lib -I./lib/readline/include/readline -lreadline 
@@ -40,9 +40,6 @@ $(RL):
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
-
-ready: all
-	@./$(NAME)
 
 RLclean:
 	@$(RM) lib/readline

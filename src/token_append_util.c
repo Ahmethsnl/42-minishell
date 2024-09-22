@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:11:08 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/07 18:21:36 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/22 16:36:01 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	token_append_meta_redl(t_token **token)
 	data = ft_strdup("<");
 	if (!data)
 		return (FAILURE);
-	new = token_new(data, RED_L);
+	new = token_new(data, RED_INPUT);
 	if (!new)
 		return (free(data), FAILURE);
 	token_add_prev(token, new);
@@ -56,7 +56,7 @@ int	token_append_meta_redll(t_token **token)
 	data = ft_strdup("<<");
 	if (!data)
 		return (FAILURE);
-	new = token_new(data, RED_LL);
+	new = token_new(data, RED_HEREDOC);
 	if (!new)
 		return (free(data), FAILURE);
 	token_add_prev(token, new);
@@ -73,7 +73,7 @@ int	token_append_meta_redr(t_token **token)
 	data = ft_strdup(">");
 	if (!data)
 		return (FAILURE);
-	new = token_new(data, RED_R);
+	new = token_new(data, RED_OUTPUT);
 	if (!new)
 		return (free(data), FAILURE);
 	token_add_prev(token, new);
@@ -90,7 +90,7 @@ int	token_append_meta_redrr(t_token **token)
 	data = ft_strdup(">>");
 	if (!data)
 		return (FAILURE);
-	new = token_new(data, RED_RR);
+	new = token_new(data, RED_APPEND);
 	if (!new)
 		return (free(data), FAILURE);
 	token_add_prev(token, new);

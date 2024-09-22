@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkarakus <kkarakus@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:11:21 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/22 12:38:42 by kkarakus         ###   ########.fr       */
+/*   Updated: 2024/08/07 18:21:18 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ bool	token_sep_md_init(t_token_sep_md *md, t_token *token)
 	(*md).i = 0;
 	return (false);
 }
-
 
 t_token	**token_separate_by_pipe(t_token *token)
 {

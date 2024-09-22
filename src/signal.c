@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkarakus <kkarakus@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:10:58 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/22 12:39:26 by kkarakus         ###   ########.fr       */
+/*   Updated: 2024/09/06 17:03:54 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ctrl_d(int sig)
 {
 	(void)sig;
 	rl_on_new_line();
-	printf("\033[K");
+	write(1, "\033[K", 3);
 	rl_redisplay();
 	g_sig = 0;
 }
@@ -39,7 +39,7 @@ void	ctrl_c(int sig)
 	{
 		write(1, "\n", 1);
 		rl_on_new_line();
-		// rl_replace_line("", 0);
+		rl_replace_line("", 0);
 		rl_redisplay();
 	}
 	g_sig = 1;

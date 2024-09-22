@@ -6,18 +6,75 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 18:34:58 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/16 18:35:46 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/23 18:55:58 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
+static void	set_fds_1(int **fd, t_cmd *cmd, int i)
+{
+	if (fd)
+	{
+		if (i != 0)
+		{
+			close(fd[i - 1][1]);
+			if (cmd->in != NAFD)
+			{
+				cmd->bin = cmd->in;
+				close(fd[i - 1][0]);
+			}
+			else
+				cmd->bin = fd[i - 1][0];
+		}
+		else
+		{
+			if (cmd->in != NAFD)
+				cmd->bin = cmd->in;
+			else
+				cmd->bin = STDIN_FILENO;
+		}
+	}
+	else
+		if (cmd->in != NAFD)
+			cmd->bin = cmd->in;
+}
+
+static void	set_fds_2(int **fd, t_cmd *cmd, int arr_len, int i)
+{
+	if (fd)
+	{
+		if (i != arr_len - 1)
+		{
+			close(fd[i][0]);
+			if (cmd->out != NAFD)
+			{
+				cmd->bout = cmd->out;
+				close(fd[i][1]);
+			}
+			else
+				cmd->bout = fd[i][1];
+		}
+		else
+		{
+			if (cmd->out != NAFD)
+				cmd->bout = cmd->out;
+			else
+				cmd->bout = STDOUT_FILENO;
+		}
+	}
+	else
+		if (cmd->out != NAFD)
+			cmd->bout = cmd->out;
+}
+
 void	built_in_handle_fds(t_cmd *cmd, int **pipe_fds)
 {
-	(void)pipe_fds;
 	if (cmd->in == NAFD)
 		if (cmd->heredoc)
 			cmd->in = cmd->heredoc[cmd->idx];
+	set_fds_1(pipe_fds, cmd, cmd->idx);
+	set_fds_2(pipe_fds, cmd, cmd->count, cmd->idx);
 	if (cmd->bout == NAFD)
 		cmd->bout = STDOUT_FILENO;
 	if (cmd->bin == NAFD)

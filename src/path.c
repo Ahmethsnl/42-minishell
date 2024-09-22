@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:10:38 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/16 19:06:17 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/22 17:48:00 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static char	*get_cmd_relative_path(t_token *token, t_state *state,
 		while (token->type != CMD)
 			token = token->next;
 		cmd_path = get_check_cmd_path(token, state, temp);
-		if (!access(cmd_path, F_OK) && !access(cmd_path, X_OK))
+		if (access(cmd_path, F_OK) == 0 && access(cmd_path, X_OK) == 0)
 			return (cmd_path);
 		free(cmd_path);
 	}

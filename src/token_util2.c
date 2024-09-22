@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_util2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkarakus <kkarakus@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:11:19 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/21 18:08:18 by kkarakus         ###   ########.fr       */
+/*   Updated: 2024/08/23 17:31:34 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int **pipe_fds)
 {
 	if (which_command_built_in(state, token, cmd, pipe_fds) != SUCCESS)
 	{
+		free(token->data);
 		token->data = NULL;
 		return (cmd_dispose(cmd), FAILURE);
 	}

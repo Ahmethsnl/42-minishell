@@ -6,7 +6,7 @@
 /*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:11:11 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/07 18:21:32 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/08/22 17:49:28 by ahmsanli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ bool	token_append_meta(t_token **token)
 		{
 			md.has_meta = true;
 			token_append_all(token, md.start, md.i, md.type);
-			if (md.type == RED_LL || md.type == RED_RR)
+			if (md.type == RED_HEREDOC || md.type == RED_APPEND)
 				md.i++;
 			if ((*token)->data[md.i + 1] && !is_meta_char((*token)->data, md.i
 					+ 1))
@@ -47,13 +47,13 @@ void	token_append_all(t_token **token, int start, int i,
 		token_append_str(token, start, i);
 	if (type == PIPE)
 		token_append_meta_pipe(token);
-	if (type == RED_L)
+	if (type == RED_INPUT)
 		token_append_meta_redl(token);
-	if (type == RED_LL)
+	if (type == RED_HEREDOC)
 		token_append_meta_redll(token);
-	if (type == RED_R)
+	if (type == RED_OUTPUT)
 		token_append_meta_redr(token);
-	if (type == RED_RR)
+	if (type == RED_APPEND)
 		token_append_meta_redrr(token);
 }
 

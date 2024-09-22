@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahmsanli <ahmsanli@student.42istanbul.c    +#+  +:+       +#+        */
+/*   By: kkarakus <kkarakus@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 17:19:47 by ahmsanli          #+#    #+#             */
-/*   Updated: 2024/08/15 19:11:39 by ahmsanli         ###   ########.fr       */
+/*   Updated: 2024/09/06 13:31:20 by kkarakus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ int	run_echo(t_state *state, t_token *token, t_cmd *cmd)
 	if (is_empty_arg(token->next))
 	{
 		state->status = 0;
+		write(1, "\n", 1);
 		return (dprint(cmd->out, "\n"), SUCCESS);
 	}
 	token = token->next;

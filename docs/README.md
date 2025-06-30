@@ -1,6 +1,6 @@
 [![Son Commit](https://img.shields.io/github/last-commit/ahmethsnl/42-minishell?style=flat)](https://github.com/ahmethsnl/42-minishell/commits)
 
-#🐚 kayısı minishell
+# 🐚 Kayısı minishell
 
 Minishell, temel Unix shell komutlarını destekleyen, basit ve küçük ölçekli bir shell uygulamasıdır. Bu proje, shell programlama prensiplerini anlamak ve temel kabuk işlemlerini uygulamak amacıyla hazırlanmıştır.
 
